@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1754265929848099994}
-  - component: {fileID: 5566797935311482990}
   - component: {fileID: 5521606216087265748}
+  - component: {fileID: 4459784044879461080}
   m_Layer: 3
   m_Name: detector de generador
   m_TagString: Nuevo Piso
@@ -33,22 +33,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8285276002233636834}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5566797935311482990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 30253536672426100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75a47d03da0c14e449dad6b281b371d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DetectorGenerador
-  floorPrefabs:
-  - {fileID: 2055404912408526734}
-  spawnOrigin: {fileID: 1305837662299913668}
-  hasSpawned: 0
 --- !u!65 &5521606216087265748
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -68,8 +52,27 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1000, y: 1000, z: 1000}
+  m_Size: {x: 740, y: 500, z: 1000}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4459784044879461080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30253536672426100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8191b1a55edc6441b5476bb72fd02b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorSpawner
+  PreafabsPasillos:
+  - {fileID: 2055404912408526734}
+  puntoGeneracion: {fileID: 1305837662299913668}
+  jugador: {fileID: 0}
+  puedeGenerar: 1
+  SpawnGlobalCooldown: 0.25
+  NuevoRestrasoDeSpawner: 0.2
 --- !u!1 &197944069693852237
 GameObject:
   m_ObjectHideFlags: 0
@@ -79,8 +82,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7108353062007712816}
-  - component: {fileID: 4948182002673876650}
   - component: {fileID: 2444831456745216177}
+  - component: {fileID: 8589491970845465908}
   m_Layer: 3
   m_Name: detector de generador (2)
   m_TagString: Nuevo Piso
@@ -103,22 +106,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8285276002233636834}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4948182002673876650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 197944069693852237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75a47d03da0c14e449dad6b281b371d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DetectorGenerador
-  floorPrefabs:
-  - {fileID: 2055404912408526734}
-  spawnOrigin: {fileID: 1305074871010975064}
-  hasSpawned: 0
 --- !u!65 &2444831456745216177
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -138,8 +125,27 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1000, y: 1000, z: 1000}
+  m_Size: {x: 740, y: 500, z: 1000}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8589491970845465908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197944069693852237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8191b1a55edc6441b5476bb72fd02b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorSpawner
+  PreafabsPasillos:
+  - {fileID: 2055404912408526734}
+  puntoGeneracion: {fileID: 1305074871010975064}
+  jugador: {fileID: 0}
+  puedeGenerar: 1
+  SpawnGlobalCooldown: 0.25
+  NuevoRestrasoDeSpawner: 0.2
 --- !u!1 &369841365928716985
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,8 +155,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 252596869370313373}
-  - component: {fileID: 2601990350290222760}
   - component: {fileID: 7655665726117096830}
+  - component: {fileID: 1641238959833004660}
   m_Layer: 3
   m_Name: detector de generador (1)
   m_TagString: Nuevo Piso
@@ -173,22 +179,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8285276002233636834}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2601990350290222760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 369841365928716985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75a47d03da0c14e449dad6b281b371d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DetectorGenerador
-  floorPrefabs:
-  - {fileID: 2055404912408526734}
-  spawnOrigin: {fileID: 675398465426844684}
-  hasSpawned: 0
 --- !u!65 &7655665726117096830
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -208,8 +198,27 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1000, y: 1000, z: 1000}
+  m_Size: {x: 740, y: 500, z: 1000}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1641238959833004660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369841365928716985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8191b1a55edc6441b5476bb72fd02b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorSpawner
+  PreafabsPasillos:
+  - {fileID: 2055404912408526734}
+  puntoGeneracion: {fileID: 675398465426844684}
+  jugador: {fileID: 0}
+  puedeGenerar: 1
+  SpawnGlobalCooldown: 0.25
+  NuevoRestrasoDeSpawner: 0.2
 --- !u!1 &674564478899363162
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,8 +322,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5270021335208065499}
-  - component: {fileID: 2231382441833960431}
   - component: {fileID: 4773622683197645887}
+  - component: {fileID: 1974705014118622653}
   m_Layer: 3
   m_Name: detector de generador (3)
   m_TagString: Nuevo Piso
@@ -337,22 +346,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8285276002233636834}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2231382441833960431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6104667308957655577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75a47d03da0c14e449dad6b281b371d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DetectorGenerador
-  floorPrefabs:
-  - {fileID: 2055404912408526734}
-  spawnOrigin: {fileID: 7241582666754907795}
-  hasSpawned: 0
 --- !u!65 &4773622683197645887
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -372,8 +365,27 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1000, y: 2000, z: 1000}
+  m_Size: {x: 740, y: 500, z: 1000}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1974705014118622653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6104667308957655577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8191b1a55edc6441b5476bb72fd02b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorSpawner
+  PreafabsPasillos:
+  - {fileID: 2055404912408526734}
+  puntoGeneracion: {fileID: 7241582666754907795}
+  jugador: {fileID: 0}
+  puedeGenerar: 1
+  SpawnGlobalCooldown: 0.25
+  NuevoRestrasoDeSpawner: 0.2
 --- !u!1 &7931723797554573256
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,7 +546,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0c9664719984b2f4d88d7e26c87bc610, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1597990341112224720}
+      addedObject: {fileID: 5742768120850759848}
     - targetCorrespondingSourceObject: {fileID: -5266785677919700964, guid: 0c9664719984b2f4d88d7e26c87bc610, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5999524584113417553}
@@ -575,7 +587,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0c9664719984b2f4d88d7e26c87bc610, type: 3}
   m_PrefabInstance: {fileID: 8462703354383511561}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1597990341112224720
+--- !u!114 &5742768120850759848
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -584,7 +596,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8768761417622097240}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca3f0ed4ae537b240b516dad108db451, type: 3}
+  m_Script: {fileID: 11500000, guid: b0f38d16534085a4da43ef90e98fd4f8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FloorProximityManager
-  destroyDelay: 1.5
+  m_EditorClassIdentifier: Assembly-CSharp::DestruccionPiso
+  jugador: {fileID: 0}
+  retrasoDestruccion: 2
+  intervaloRevision: 1
