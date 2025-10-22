@@ -11,10 +11,20 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    public void AgregrarLlave()
+    public void AgregrarLlave(int cantidad = 1)
     {
-        keys++;
-        Debug.Log("Llaves: " + keys);
+        keys += Mathf.Max(0, cantidad);
+
+    }
+
+    public bool IntentarUsarLlave(int cantidad = 1)
+    {
+        if (keys >= cantidad)
+        {
+            keys -= cantidad;
+            return true;
+        }
+        return false;
     }
 
 }
