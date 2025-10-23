@@ -8,7 +8,7 @@ public class Llaves : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            GameManager.instance.AgregrarLlave();
+            GameManager.instance.AgregrarLlave(1);
             Destroy(this.gameObject);
         }
     }

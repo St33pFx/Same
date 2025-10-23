@@ -29,6 +29,8 @@ public class PostHDRPController : MonoBehaviour
     private bool isFadingIn = false;
     private bool isFadingOut = false;
 
+    public bool IsHealing { get; private set; } = false;
+
     void Start()
     {
         if (volume != null && volume.profile != null)
@@ -118,9 +120,9 @@ public class PostHDRPController : MonoBehaviour
 
     private IEnumerator HealingFadeOut()
     {
+        IsHealing = true; // Inicia el estado de curación
         float elapsed = 0f;
 
-        // Guardar valores actuales
         float startVignette = vignette != null ? vignette.intensity.value : 0f;
         float startSaturation = colorAdjustments != null ? colorAdjustments.saturation.value : 0f;
 
@@ -138,8 +140,9 @@ public class PostHDRPController : MonoBehaviour
             yield return null;
         }
 
-        // Asegurarse de que los valores finales sean exactos
         if (vignette != null) vignette.intensity.value = VignetteInicio;
         if (colorAdjustments != null) colorAdjustments.saturation.value = SaturacionInicio;
+
+        IsHealing = false; // Termina el estado de curación
     }
 }
