@@ -80,6 +80,8 @@ public class PostHDRPController : MonoBehaviour
 
     public void StartFadeIn()
     {
+        if (IsHealing) return; // No iniciar fade si se está curando
+
         timer = 0f;
         isFadingIn = true;
         isFadingOut = false;
@@ -87,6 +89,8 @@ public class PostHDRPController : MonoBehaviour
 
     public void StartFadeOutWithDelay()
     {
+        if (IsHealing) return; // No iniciar fade si se está curando
+
         StopAllCoroutines();
         StartCoroutine(FadeOutDelayed());
     }
@@ -101,26 +105,21 @@ public class PostHDRPController : MonoBehaviour
     }
 
     // Método para aplicar curación con fade out
-    public void ApplyHealing()
+    public void ApplyHealing(MonolithFadeZone fadeZone = null)
     {
         // Detener cualquier fade activo
         StopAllCoroutines();
-
-        // Reiniciar estados de fade
         isFadingIn = false;
         isFadingOut = false;
 
-        // Establecer los valores actuales al inicio de la curación
-        if (vignette != null) vignette.intensity.value = vignette.intensity.value; // opcional, aseguramos consistencia
-        if (colorAdjustments != null) colorAdjustments.saturation.value = colorAdjustments.saturation.value;
+        IsHealing = true;
 
         // Iniciar corrutina de curación fade out
-        StartCoroutine(HealingFadeOut());
+        StartCoroutine(HealingFadeOut(fadeZone));
     }
 
-    private IEnumerator HealingFadeOut()
+    private IEnumerator HealingFadeOut(MonolithFadeZone fadeZone)
     {
-        IsHealing = true; // Inicia el estado de curación
         float elapsed = 0f;
 
         float startVignette = vignette != null ? vignette.intensity.value : 0f;
@@ -143,6 +142,10 @@ public class PostHDRPController : MonoBehaviour
         if (vignette != null) vignette.intensity.value = VignetteInicio;
         if (colorAdjustments != null) colorAdjustments.saturation.value = SaturacionInicio;
 
-        IsHealing = false; // Termina el estado de curación
+        IsHealing = false;
+
+        // Reiniciar estado del fade en el MonolithFadeZone para que el efecto comience desde cero si el jugador vuelve
+        if (fadeZone != null)
+            fadeZone.ResetFadeState();
     }
 }
