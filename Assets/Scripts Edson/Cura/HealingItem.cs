@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class HealingItem : MonoBehaviour
 {
-    [Header("Referencia al controlador HDRP del jugador")]
-    public PostHDRPController postController;
+    [Header("Referencia al controlador de fade")]
+    public MonolithCanvasFade fadeController;
 
     [Header("Configuración")]
     public KeyCode BotonAPresionar = KeyCode.E;
@@ -12,12 +12,11 @@ public class HealingItem : MonoBehaviour
 
     private void Update()
     {
-        // Detectar si el jugador está cerca y presiona la tecla
         if (playerNearby && Input.GetKeyDown(BotonAPresionar))
         {
-            if (postController != null)
+            if (fadeController != null)
             {
-                postController.ApplyHealing(); // Aplica la curación rápida
+                fadeController.ApplyHealing(); // Inicia la curación independiente
             }
 
             // Destruir el objeto curativo después de usarlo
