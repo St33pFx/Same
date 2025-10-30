@@ -549,7 +549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.ProbeVolume
   mode: 1
-  size: {x: 28, y: 9.567429, z: 28}
+  size: {x: 28, y: 6.9646287, z: 28}
   overrideRendererFilters: 0
   minRendererVolumeSize: 0.1
   objectLayerMask:
@@ -589,7 +589,7 @@ Transform:
   m_GameObject: {fileID: 575596862}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.4737146, z: 0}
+  m_LocalPosition: {x: 0, y: 1.1723144, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1169,16 +1169,28 @@ PrefabInstance:
       value: rifle
       objectReference: {fileID: 0}
     - target: {fileID: 1821336659890025623, guid: 4839894f9c84216428f301074c377652, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1821336659890025623, guid: 4839894f9c84216428f301074c377652, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1821336659890025623, guid: 4839894f9c84216428f301074c377652, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1821336659890025623, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.506
+      value: 1.693
       objectReference: {fileID: 0}
     - target: {fileID: 1821336659890025623, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.88
+      value: 2.084
       objectReference: {fileID: 0}
     - target: {fileID: 1821336659890025623, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.9724
+      value: -4.099
       objectReference: {fileID: 0}
     - target: {fileID: 1821336659890025623, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1208,6 +1220,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1821336659890025623, guid: 4839894f9c84216428f301074c377652, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1222,16 +1238,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6077639398111836465, guid: f7bec4480e808844aad47e3cd4492aec, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6077639398111836465, guid: f7bec4480e808844aad47e3cd4492aec, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6077639398111836465, guid: f7bec4480e808844aad47e3cd4492aec, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6077639398111836465, guid: f7bec4480e808844aad47e3cd4492aec, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.151
+      value: 1.665
       objectReference: {fileID: 0}
     - target: {fileID: 6077639398111836465, guid: f7bec4480e808844aad47e3cd4492aec, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.796
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6077639398111836465, guid: f7bec4480e808844aad47e3cd4492aec, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.707
+      value: -4.1916
       objectReference: {fileID: 0}
     - target: {fileID: 6077639398111836465, guid: f7bec4480e808844aad47e3cd4492aec, type: 3}
       propertyPath: m_LocalRotation.w
