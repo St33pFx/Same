@@ -7,7 +7,7 @@ public class MonolithCanvasFade : MonoBehaviour
     [Header("Referencia a la imagen del fade")]
     public Image fadeImage;
 
-    [Header("Collider del monolito")]
+    [Header("Collider del área de fade")]
     public Collider fadeCollider; // Asignar desde el inspector
     public string playerTag = "Player";
 
@@ -15,137 +15,108 @@ public class MonolithCanvasFade : MonoBehaviour
     public float maxAlpha = 0.45f;
     public float fadeInTime = 2f;
     public float fadeOutTime = 2f;
-    public float fadeOutDelay = 3f;
 
     [Header("Curación")]
-    public float healingDuration = 2f;
+    public float healingDuration = 2f;   // Tiempo independiente de curación
 
     private Coroutine fadeCoroutine;
-    private Coroutine healingCoroutine;
     private bool playerInside = false;
     public bool IsHealing { get; private set; } = false;
 
     private void Awake()
     {
+        if (fadeImage == null)
+            Debug.LogError("Asigna fadeImage en el inspector.");
         if (fadeCollider == null)
-            Debug.LogError("Debes asignar el Collider del monolito en el Inspector.");
+            Debug.LogError("Asigna fadeCollider en el inspector.");
+        else
+            fadeCollider.isTrigger = true;
 
-        if (fadeImage != null)
-        {
-            Color c = fadeImage.color;
-            c.a = 0f;
-            fadeImage.color = c;
-        }
+        SetAlpha(0f);
     }
 
     private void Update()
     {
-        // Detectar si el jugador está dentro del collider asignado
-        if (fadeCollider != null && !IsHealing)
+        if (fadeCollider == null || fadeImage == null) return;
+        if (IsHealing) return; // no iniciar fades normales mientras cura
+
+        bool isInsideNow = false;
+        Collider[] hits = Physics.OverlapBox(fadeCollider.bounds.center, fadeCollider.bounds.extents);
+        foreach (var hit in hits)
         {
-            bool inside = fadeCollider.bounds.Contains(PlayerPosition());
-            if (inside && !playerInside)
+            if (hit.CompareTag(playerTag))
             {
-                playerInside = true;
-                StartFadeIn();
+                isInsideNow = true;
+                break;
             }
-            else if (!inside && playerInside)
-            {
-                playerInside = false;
-                StartFadeOutWithDelay();
-            }
+        }
+
+        if (isInsideNow && !playerInside)
+        {
+            playerInside = true;
+            StartFadeIn();
+        }
+        else if (!isInsideNow && playerInside)
+        {
+            playerInside = false;
+            StartFadeOut(fadeOutTime);
         }
     }
 
-    private Vector3 PlayerPosition()
-    {
-        GameObject player = GameObject.FindGameObjectWithTag(playerTag);
-        return player != null ? player.transform.position : Vector3.zero;
-    }
-
-    #region Fade Normal
+    // ---------- Fade normal ----------
     private void StartFadeIn()
     {
         if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
-        fadeCoroutine = StartCoroutine(FadeCanvas(0f, maxAlpha, fadeInTime));
+        fadeCoroutine = StartCoroutine(FadeCanvas(fadeImage.color.a, maxAlpha, fadeInTime));
     }
 
-    private void StartFadeOutWithDelay()
+    private void StartFadeOut(float duration)
     {
         if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
-        fadeCoroutine = StartCoroutine(FadeOutCoroutine());
+        fadeCoroutine = StartCoroutine(FadeCanvas(fadeImage.color.a, 0f, duration));
     }
 
-    private IEnumerator FadeOutCoroutine()
-    {
-        yield return new WaitForSeconds(fadeOutDelay);
-        fadeCoroutine = StartCoroutine(FadeCanvas(fadeImage.color.a, 0f, fadeOutTime));
-        yield return fadeCoroutine;
-        fadeCoroutine = null;
-    }
-
-    private IEnumerator FadeCanvas(float startAlpha, float targetAlpha, float duration)
+    private IEnumerator FadeCanvas(float from, float to, float duration)
     {
         float elapsed = 0f;
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            float t = elapsed / duration;
-            Color c = fadeImage.color;
-            c.a = Mathf.Lerp(startAlpha, targetAlpha, t);
-            fadeImage.color = c;
+            float t = Mathf.Clamp01(elapsed / duration);
+            SetAlpha(Mathf.Lerp(from, to, t));
             yield return null;
         }
-
-        Color finalColor = fadeImage.color;
-        finalColor.a = targetAlpha;
-        fadeImage.color = finalColor;
+        SetAlpha(to);
     }
-    #endregion
 
-    #region Curación
-    // Curación independiente
+    private void SetAlpha(float a)
+    {
+        if (fadeImage == null) return;
+        Color c = fadeImage.color;
+        c.a = Mathf.Clamp01(a);
+        fadeImage.color = c;
+    }
+
+    // ---------- Curación ----------
     public void ApplyHealing()
     {
-        // Detener cualquier fade de curación activo
-        if (healingCoroutine != null)
-            StopCoroutine(healingCoroutine);
+        if (IsHealing) return;
+        IsHealing = true;
 
-        // Detener el fade normal mientras se aplica la curación
-        if (fadeCoroutine != null)
-        {
-            StopCoroutine(fadeCoroutine);
-            fadeCoroutine = null;
-        }
-
-        // Iniciar curación independiente usando su propio tiempo
-        healingCoroutine = StartCoroutine(HealingFadeOut());
+        if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
+        StartCoroutine(HealingFade());
     }
 
-    private IEnumerator HealingFadeOut()
+    private IEnumerator HealingFade()
     {
-        IsHealing = true;
-        float elapsed = 0f;
-        float startAlpha = fadeImage.color.a;
+        // Inicia el fade out con el tiempo de curación
+        yield return StartCoroutine(FadeCanvas(fadeImage.color.a, 0f, healingDuration));
 
-        while (elapsed < healingDuration)
-        {
-            elapsed += Time.deltaTime;
-            float t = elapsed / healingDuration; // Usamos el tiempo de curación
-
-            Color c = fadeImage.color;
-            c.a = Mathf.Lerp(startAlpha, 0f, t);
-            fadeImage.color = c;
-
-            yield return null;
-        }
-
-        Color finalColor = fadeImage.color;
-        finalColor.a = 0f;
-        fadeImage.color = finalColor;
+        // Asegura que al terminar quede completamente transparente
+        SetAlpha(0f);
 
         IsHealing = false;
-        healingCoroutine = null;
+        playerInside = false;
+        fadeCoroutine = null;
     }
-    #endregion
 }

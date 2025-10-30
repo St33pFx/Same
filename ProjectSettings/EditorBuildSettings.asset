@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/TEAM/Escenas/Creditos.unity
     guid: 8a66affd4cb0360488157388a4b469da
+  - enabled: 1
+    path: Assets/TEAM/Escenas/Experimental/Demostracion.unity
+    guid: d456c4621b3eb5641a7e52a43b434d6b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
   m_UseUCBPForAssetBundles: 0
