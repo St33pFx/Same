@@ -47,11 +47,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GeneradorPiso
   PreafabsPasillos:
   - {fileID: 745113791960360443}
-  puntoGeneracion: {fileID: 7740427071676998422}
+  puntoGeneracion: {fileID: 8691790383895643556}
   jugador: {fileID: 0}
   puedeGenerar: 1
+  jugadorAdentro: 0
+  jugadorAfuera: 0
   SpawnGlobalCooldown: 0.25
-  NuevoRestrasoDeSpawner: 2
+  NuevoRestrasoDeSpawner: 0.1
 --- !u!65 &3927076847119466475
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -123,8 +125,10 @@ MonoBehaviour:
   puntoGeneracion: {fileID: 4752483512171360186}
   jugador: {fileID: 0}
   puedeGenerar: 1
+  jugadorAdentro: 0
+  jugadorAfuera: 0
   SpawnGlobalCooldown: 0.25
-  NuevoRestrasoDeSpawner: 2
+  NuevoRestrasoDeSpawner: 0.1
 --- !u!65 &7116494702940588714
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -196,8 +200,10 @@ MonoBehaviour:
   puntoGeneracion: {fileID: 5491438031120164498}
   jugador: {fileID: 0}
   puedeGenerar: 1
+  jugadorAdentro: 0
+  jugadorAfuera: 0
   SpawnGlobalCooldown: 0.25
-  NuevoRestrasoDeSpawner: 2
+  NuevoRestrasoDeSpawner: 0.1
 --- !u!65 &2203162122509493985
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -260,7 +266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7740427071676998422}
   m_Layer: 0
-  m_Name: generador (2)
+  m_Name: generador (3)
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -359,11 +365,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GeneradorPiso
   PreafabsPasillos:
   - {fileID: 745113791960360443}
-  puntoGeneracion: {fileID: 8691790383895643556}
+  puntoGeneracion: {fileID: 7740427071676998422}
   jugador: {fileID: 0}
   puedeGenerar: 1
+  jugadorAdentro: 0
+  jugadorAfuera: 0
   SpawnGlobalCooldown: 0.25
-  NuevoRestrasoDeSpawner: 2
+  NuevoRestrasoDeSpawner: 0.1
 --- !u!65 &5387599878145896337
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -395,7 +403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8691790383895643556}
   m_Layer: 0
-  m_Name: generador (3)
+  m_Name: generador (2)
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
