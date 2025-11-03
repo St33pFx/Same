@@ -2909,7 +2909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36f52b72cf33ded4889edcc123b4f778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TriggerSceneAndCollider
-  sceneName: Escena Monolito
+  sceneName: Experimentos 1
   colliderToActivate: {fileID: 0}
   fadeDuration: 2.5
   fadeImage: {fileID: 895945205}

@@ -15,7 +15,9 @@ GameObject:
   - component: {fileID: 7358581452064689825}
   - component: {fileID: 1500194781072976955}
   - component: {fileID: 7658052093075696418}
-  - component: {fileID: 7882458868427454768}
+  - component: {fileID: 3242186194434553886}
+  - component: {fileID: 4300886972803516566}
+  - component: {fileID: 8201148666016162286}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -181,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   keys: 0
---- !u!114 &7882458868427454768
+--- !u!114 &3242186194434553886
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,12 +192,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 1711242236113571958}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d377fa15750adf40be5f91e5665599b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9fcfa633910a50a4e83ab776d0aeeada, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+  m_EditorClassIdentifier: Assembly-CSharp::Cordura
+  corduraMaxima: 100
+  corduraActual: 100
+--- !u!114 &4300886972803516566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711242236113571958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f48e84d7c8d18d48b3412cd29ac6570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EstadisticasJugador
   vidaMax: 100
-  vidaActuali: 100
+  vidaActual: 100
   municionActual: 0
+  "da\xF1oVisual": {fileID: 0}
+  "parpadeoDa\xF1o": {fileID: 0}
+--- !u!114 &8201148666016162286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711242236113571958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6699b51c594c2a469ead95250483393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ApagarLinterna
+  objeto: {fileID: 3459138463565216643}
+  teclaAlternar: 113
 --- !u!1 &1747240297200308245
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,6 +660,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4839894f9c84216428f301074c377652, type: 3}
+--- !u!1 &3459138463565216643 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7516562649430948604, guid: 4839894f9c84216428f301074c377652, type: 3}
+  m_PrefabInstance: {fileID: 6363979887077556607}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4690452796378002920 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1821336659890025623, guid: 4839894f9c84216428f301074c377652, type: 3}
