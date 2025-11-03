@@ -1,11 +1,14 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RecogerMonolito : MonoBehaviour
 {
     [Header("Referencia al jugador")]
     public Transform ManoDelJugador; // Donde se sujeta el monolito
 
-    [Header("Configuraci�n")]
+    [Header("Punto donde se soltará el objeto")]
+    public Transform PuntoDeSoltar; // Lugar donde cae al soltarlo
+
+    [Header("Configuración")]
     public float RangoDeAlcance = 2f; // Para recoger
     public KeyCode BotonAPresionar = KeyCode.E;
 
@@ -18,7 +21,9 @@ public class RecogerMonolito : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        if (rb == null) rb = gameObject.AddComponent<Rigidbody>();
+        if (rb == null)
+            rb = gameObject.AddComponent<Rigidbody>();
+
         rb.useGravity = true;
         rb.isKinematic = false;
     }
@@ -41,7 +46,9 @@ public class RecogerMonolito : MonoBehaviour
 
         if (EsCargado)
         {
+            // Mantener el objeto en la mano
             transform.position = ManoDelJugador.position;
+            transform.rotation = ManoDelJugador.rotation;
         }
     }
 
@@ -60,6 +67,13 @@ public class RecogerMonolito : MonoBehaviour
         EsCargado = false;
         rb.isKinematic = false;
         rb.useGravity = true;
+
+        // 🔹 Si se asignó un punto de soltar, usarlo
+        if (PuntoDeSoltar != null)
+        {
+            transform.position = PuntoDeSoltar.position;
+            transform.rotation = PuntoDeSoltar.rotation;
+        }
 
         if (colliderParaDesactivar != null)
             colliderParaDesactivar.enabled = true;

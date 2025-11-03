@@ -15,6 +15,12 @@ EditorBuildSettings:
     path: Assets/TEAM/Escenas/Experimental/Experimentos.unity
     guid: 7f47bf34fa5fc4147b277e73d1a67ee3
   - enabled: 1
+    path: Assets/TEAM/Escenas/Experimental/Escena Monolito.unity
+    guid: 1debe42ce3f7f8c44889cdd0ca4b2058
+  - enabled: 1
+    path: Assets/TEAM/Escenas/Experimental/Pasillos.unity
+    guid: 0f3c6d5845ea39f41af0d9ff4a24b753
+  - enabled: 1
     path: Assets/TEAM/Escenas/Creditos.unity
     guid: 8a66affd4cb0360488157388a4b469da
   - enabled: 1
