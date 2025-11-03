@@ -57,7 +57,7 @@ public class DestruccionPiso : MonoBehaviour
                 yield return new WaitForSeconds(retrasoDestruccion);
 
                 // Recomprueba
-                if (!AnySpawnerInRange())
+                if (!SpawnersEnRango())
                 {
                     Destroy(gameObject);
                     yield break;
@@ -68,7 +68,7 @@ public class DestruccionPiso : MonoBehaviour
         }
     }
 
-    private bool AnySpawnerInRange()
+    private bool SpawnersEnRango()
     {
         if (jugador == null) return false;
 

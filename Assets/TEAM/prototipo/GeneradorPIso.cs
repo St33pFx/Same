@@ -19,18 +19,19 @@ public class GeneradorPiso : MonoBehaviour
     [Tooltip("Referencia al guizmo del jugador (si no se asigna, se buscará por tag 'Player')")]
     public GuizmoJugador jugador;
 
-    [HideInInspector]
-    public bool puedeGenerar = true;
-
-    private bool jugadorAdentro = false;
-    private bool jugadorAfuera = false;
+    [HideInInspector] public bool puedeGenerar = true;
+    public bool jugadorAdentro = false;
+    public bool jugadorAfuera = false;
 
     private static bool spawnGlobalBloqueado = false;
+
     [Tooltip("Cooldown global entre spawns (segundos) para evitar múltiples instancias inmediatas")]
     public float SpawnGlobalCooldown = 0.25f;
 
     [Tooltip("Tiempo que se desactivan los colliders de los spawners recién instanciados (segundos)")]
     public float NuevoRestrasoDeSpawner = 0.2f;
+
+    private GameObject ultimoPrefabGenerado;
 
     private void Reset()
     {
@@ -55,11 +56,16 @@ public class GeneradorPiso : MonoBehaviour
 
         jugadorAdentro = true;
 
+        if (ultimoPrefabGenerado != null)
+        {
+            return;
+        }
+
         if (!puedeGenerar) return;
         if (spawnGlobalBloqueado) return;
 
         spawnGlobalBloqueado = true;
-        puedeGenerar = false; 
+        puedeGenerar = false;
         jugadorAfuera = false;
 
         GenerarNuevoPiso();
@@ -75,40 +81,6 @@ public class GeneradorPiso : MonoBehaviour
         jugadorAfuera = true;
 
         if (jugador == null) jugador = GuizmoJugador.EncontrarJugador();
-
-        if (jugador != null && !jugador.EstaEnRango(puntoGeneracion.position))
-        {
-            puedeGenerar = true;
-            jugadorAfuera = false;
-        }
-        else
-        {
-            StartCoroutine(EsperarGizmoEnSalirParaReactivar());
-        }
-    }
-
-    private IEnumerator EsperarGizmoEnSalirParaReactivar()
-    {
-        while (true)
-        {
-            
-            if (jugadorAdentro)
-            {
-                jugadorAfuera = false;
-                yield break;
-            }
-
-            if (jugador == null) jugador = GuizmoJugador.EncontrarJugador();
-
-            if (jugador != null && jugadorAfuera && !jugador.EstaEnRango(puntoGeneracion.position))
-            {
-                puedeGenerar = true;
-                jugadorAfuera = false;
-                yield break;
-            }
-
-            yield return new WaitForSeconds(0.1f);
-        }
     }
 
     private IEnumerator LevantarBloqueoGlobal(float Retraso)
@@ -124,12 +96,14 @@ public class GeneradorPiso : MonoBehaviour
         int randomIndex = Random.Range(0, PreafabsPasillos.Length);
         GameObject nuevoSuelo = Instantiate(PreafabsPasillos[randomIndex], puntoGeneracion.position, puntoGeneracion.rotation);
 
+        ultimoPrefabGenerado = nuevoSuelo;
+
         GuizmoJugador JugadorActual = jugador ?? GuizmoJugador.EncontrarJugador();
         GeneradorPiso[] nuevoSpawner = nuevoSuelo.GetComponentsInChildren<GeneradorPiso>();
         foreach (var spawner in nuevoSpawner)
         {
             spawner.jugador = JugadorActual;
-            spawner.puedeGenerar = false; 
+            spawner.puedeGenerar = false;
 
             Collider c = spawner.GetComponent<Collider>();
             if (c != null)
@@ -149,4 +123,5 @@ public class GeneradorPiso : MonoBehaviour
         if (c != null) c.enabled = true;
     }
 }
+
 
