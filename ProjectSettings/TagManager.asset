@@ -10,7 +10,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - sensores de generacion
+  - 
   - Water
   - UI
   - Player
@@ -45,3 +45,4 @@ TagManager:
     locked: 0
   m_RenderingLayers:
   - Default
+  - muros
