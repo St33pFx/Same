@@ -3,13 +3,10 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 
-public class TriggerSceneAndCollider : MonoBehaviour
+public class MonolitoCambioEscena : MonoBehaviour
 {
     [Header("Nombre de la escena a cargar")]
     public string sceneName; // Nombre de la escena a cargar
-
-    [Header("Collider a activar")]
-    public Collider colliderToActivate; // Collider que se activará
 
     [Header("Duración del fade (segundos)")]
     public float fadeDuration = 1.5f; // Tiempo que tarda el fade antes del cambio
@@ -19,37 +16,58 @@ public class TriggerSceneAndCollider : MonoBehaviour
 
     private bool playerInTrigger = false;
     private bool sceneChangeStarted = false;
+    private GameObject player;
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
+        // Detectar si el jugador entra al área
         if (other.CompareTag("Player"))
+        {
             playerInTrigger = true;
+            player = other.gameObject; // Guardar referencia al jugador
+        }
     }
 
-    private void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
+        // Detectar si el jugador sale del área
         if (other.CompareTag("Player"))
+        {
             playerInTrigger = false;
+            player = null;
+        }
     }
 
-    private void Update()
+    void Update()
     {
+        // Iniciar el cambio de escena con fade al presionar E
         if (playerInTrigger && Input.GetKeyDown(KeyCode.E) && !sceneChangeStarted)
         {
-            // Activar el collider si se ha asignado
-            if (colliderToActivate != null)
-                colliderToActivate.enabled = true;
-
-            // Iniciar el cambio de escena con fade
             if (!string.IsNullOrEmpty(sceneName))
             {
                 sceneChangeStarted = true;
+
+                // Desactivar el PlayerController si existe
+                if (player != null)
+                {
+                    MonoBehaviour playerController = player.GetComponent<MonoBehaviour>();
+                    foreach (var comp in player.GetComponents<MonoBehaviour>())
+                    {
+                        if (comp.GetType().Name == "PlayerController")
+                        {
+                            comp.enabled = false;
+                            Debug.Log("PlayerController desactivado antes del cambio de escena.");
+                            break;
+                        }
+                    }
+                }
+
                 StartCoroutine(FadeAndChangeScene());
             }
         }
     }
 
-    private IEnumerator FadeAndChangeScene()
+    IEnumerator FadeAndChangeScene()
     {
         if (fadeImage != null)
         {
