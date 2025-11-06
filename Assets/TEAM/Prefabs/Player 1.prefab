@@ -351,8 +351,8 @@ GameObject:
   - component: {fileID: 7138061628275203480}
   - component: {fileID: 1852543349863543428}
   - component: {fileID: 1431758129310999504}
-  - component: {fileID: 8660021145897429514}
   - component: {fileID: 1345847478775388672}
+  - component: {fileID: 8660021145897429514}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: Untagged
@@ -436,6 +436,43 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5093781030805133446}
   m_Enabled: 1
+--- !u!114 &1345847478775388672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5093781030805133446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac7fe57ca707cda4395bd03721ee4a32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRb: {fileID: 7358581452064689825}
+  cameraTransform: {fileID: 4231751588535057080}
+  weaponPivot: {fileID: 4690452796378002920}
+  bobAmplitudeX: 0.08
+  bobAmplitudeY: 0.08
+  walkFrequency: 1.8
+  runFrequency: 3.5
+  minSpeedToBob: 0.1
+  bobSmooth: 12
+  speedToFreq: 0.35
+  useGroundCheck: 0
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  groundCheckDistance: 0.2
+  groundCheckOffset: {x: 0, y: 0.05, z: 0}
+  swayDegrees: 2.16
+  maxSwayAngle: 6
+  swayFollowSpeed: 10
+  swayReturnSpeed: 8
+  posSwayAmount: 0.02
+  posSwayReturn: 10
+  posSwayClamp: 0.06
+  runKey: 304
+  runSpeedThreshold: 3.5
 --- !u!114 &8660021145897429514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -575,43 +612,6 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
---- !u!114 &1345847478775388672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5093781030805133446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac7fe57ca707cda4395bd03721ee4a32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerRb: {fileID: 7358581452064689825}
-  cameraTransform: {fileID: 4231751588535057080}
-  weaponPivot: {fileID: 4690452796378002920}
-  bobAmplitudeX: 0.08
-  bobAmplitudeY: 0.08
-  walkFrequency: 1.8
-  runFrequency: 3.5
-  minSpeedToBob: 0.1
-  bobSmooth: 12
-  speedToFreq: 0.35
-  useGroundCheck: 0
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  groundCheckDistance: 0.2
-  groundCheckOffset: {x: 0, y: 0.05, z: 0}
-  swayDegrees: 2.16
-  maxSwayAngle: 6
-  swayFollowSpeed: 10
-  swayReturnSpeed: 8
-  posSwayAmount: 0.02
-  posSwayReturn: 10
-  posSwayClamp: 0.06
-  runKey: 304
-  runSpeedThreshold: 3.5
 --- !u!1001 &6363979887077556607
 PrefabInstance:
   m_ObjectHideFlags: 0
