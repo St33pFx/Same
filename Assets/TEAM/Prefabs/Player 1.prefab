@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3242186194434553886}
   - component: {fileID: 4300886972803516566}
   - component: {fileID: 8201148666016162286}
+  - component: {fileID: 8194922318303144209}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -228,6 +229,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ApagarLinterna
   objeto: {fileID: 3459138463565216643}
   teclaAlternar: 113
+--- !u!114 &8194922318303144209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711242236113571958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4564c894e1d86c4e81b930c1fac62fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Shooter
+  bulletPrefab: {fileID: 1895117607434151456, guid: 9da20bf4e1d22c04a9cc41a19e106cd1, type: 3}
+  firePoint: {fileID: 9215487364930108868}
+  bulletSpeed: 60
+  playerCamera: {fileID: 1852543349863543428}
 --- !u!1 &1747240297200308245
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,9 +589,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerRb: {fileID: 7358581452064689825}
   cameraTransform: {fileID: 4231751588535057080}
-  weaponPivot: {fileID: 0}
-  bobAmplitudeX: 0.16
-  bobAmplitudeY: 0.1
+  weaponPivot: {fileID: 4690452796378002920}
+  bobAmplitudeX: 0.08
+  bobAmplitudeY: 0.08
   walkFrequency: 1.8
   runFrequency: 3.5
   minSpeedToBob: 0.1
@@ -607,25 +624,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: rifle
       objectReference: {fileID: 0}
+    - target: {fileID: 1632663477312025083, guid: 4839894f9c84216428f301074c377652, type: 3}
+      propertyPath: m_Intensity
+      value: 4627.199
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632663477312025083, guid: 4839894f9c84216428f301074c377652, type: 3}
+      propertyPath: m_LightUnit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632663477312025083, guid: 4839894f9c84216428f301074c377652, type: 3}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1821336659890025623, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5303001
       objectReference: {fileID: 0}
     - target: {fileID: 1821336659890025623, guid: 4839894f9c84216428f301074c377652, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1821336659890025623, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.5303001
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1821336659890025623, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.4300003
+      value: 0.092
       objectReference: {fileID: 0}
     - target: {fileID: 1821336659890025623, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.3
+      value: -0.1581
       objectReference: {fileID: 0}
     - target: {fileID: 1821336659890025623, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.2880001
+      value: 0.3896
       objectReference: {fileID: 0}
     - target: {fileID: 1821336659890025623, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_LocalRotation.w
@@ -655,6 +688,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4750549467791858921, guid: 4839894f9c84216428f301074c377652, type: 3}
+      propertyPath: m_VolumetricDimmer
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -668,5 +705,10 @@ GameObject:
 --- !u!4 &4690452796378002920 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1821336659890025623, guid: 4839894f9c84216428f301074c377652, type: 3}
+  m_PrefabInstance: {fileID: 6363979887077556607}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &9215487364930108868 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2860517022570085563, guid: 4839894f9c84216428f301074c377652, type: 3}
   m_PrefabInstance: {fileID: 6363979887077556607}
   m_PrefabAsset: {fileID: 0}
