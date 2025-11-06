@@ -476,7 +476,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5201622362541798226}
   - component: {fileID: 9074616893639555542}
-  - component: {fileID: 8377309276815098142}
   m_Layer: 0
   m_Name: Pool
   m_TagString: Untagged
@@ -559,7 +558,7 @@ MonoBehaviour:
   currentDebugMultiplier: 1
   waterFoamDebugMode: 0
   underWater: 1
-  volumeBounds: {fileID: 8377309276815098142}
+  volumeBounds: {fileID: 0}
   volumeDepth: 50
   volumeHeight: 0
   volumePrority: 0
@@ -666,27 +665,6 @@ MonoBehaviour:
   waterMaskRemap: {x: 0, y: 1}
   waterMaskExtent: {x: 100, y: 100}
   waterMaskOffset: {x: 0, y: 0}
---- !u!65 &8377309276815098142
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6301569165656076566}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 5, z: 1}
-  m_Center: {x: 0, y: -2, z: 0}
 --- !u!1 &7875793385391283950
 GameObject:
   m_ObjectHideFlags: 0
