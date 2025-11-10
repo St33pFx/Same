@@ -5,12 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/OutdoorsScene.unity
     guid: 8124e5870f4fd4c779e7a5f994e84ad1
   - enabled: 1
     path: Assets/TEAM/Escenas/Menu.unity
     guid: b71fae19542f51c4a96b0d0c724df68c
+  - enabled: 1
+    path: Assets/TEAM/Escenas/NIvelUno.unity
+    guid: d5db8ca02c8b1bc4e90aae05e60faedd
   - enabled: 1
     path: Assets/TEAM/Escenas/Experimental/Experimentos.unity
     guid: 7f47bf34fa5fc4147b277e73d1a67ee3
