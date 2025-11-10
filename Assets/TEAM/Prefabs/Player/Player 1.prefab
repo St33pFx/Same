@@ -37,7 +37,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5, y: 2.14, z: -8.37}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4231751588535057080}
@@ -674,7 +674,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1632663477312025083, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_Intensity
-      value: 4627.199
+      value: 1180.9022
       objectReference: {fileID: 0}
     - target: {fileID: 1632663477312025083, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_LightUnit
@@ -683,6 +683,22 @@ PrefabInstance:
     - target: {fileID: 1632663477312025083, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_Lightmapping
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632663477312025083, guid: 4839894f9c84216428f301074c377652, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: -0.0007005059
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632663477312025083, guid: 4839894f9c84216428f301074c377652, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632663477312025083, guid: 4839894f9c84216428f301074c377652, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 3.2e-44
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632663477312025083, guid: 4839894f9c84216428f301074c377652, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 1.6401931e+10
       objectReference: {fileID: 0}
     - target: {fileID: 1821336659890025623, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_LocalScale.x

@@ -1077,7 +1077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fddf3290cb66de543bef9ccb5a030080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CambioDeEscena
-  escena: Demostracion
+  escena: NIvelUno
 --- !u!114 &837296770
 MonoBehaviour:
   m_ObjectHideFlags: 0
