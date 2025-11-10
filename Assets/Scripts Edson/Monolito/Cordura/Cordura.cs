@@ -15,6 +15,9 @@ public class Cordura : MonoBehaviour
     {
         corduraActual -= cantidad;
         corduraActual = Mathf.Clamp(corduraActual, 0f, corduraMaxima);
+
+        // Mostrar HUD de cordura
+        CorduraHUD.Instance?.MostrarIcono();
     }
 
     public void CurarCordura(float cantidad)
