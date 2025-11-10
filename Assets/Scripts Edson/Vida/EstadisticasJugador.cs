@@ -15,33 +15,42 @@ public class EstadisticasJugador : MonoBehaviour
     [Header("Referencia a parpadeo de daño")]
     public ParpadeoDaño parpadeoDaño;
 
-    // Agregar munición
-    public void AgregarMunicion(int cantidad)
+    private void Start()
     {
-        municionActual += cantidad;
+        // Sincronizar con munición persistente al inicio
+        if (MunicionPersistente.Instance != null)
+            municionActual = MunicionPersistente.Instance.municionActual;
+
+        UIManager.Instance?.MostrarDisparo();
     }
 
-    // Curación del jugador
+    public void AgregarMunicion(int cantidad)
+    {
+        if (MunicionPersistente.Instance != null)
+        {
+            MunicionPersistente.Instance.AgregarMunicion(cantidad);
+            municionActual = MunicionPersistente.Instance.municionActual;
+        }
+
+        UIManager.Instance?.MostrarDisparo();
+    }
+
     public void Curarse(int cantidad)
     {
         vidaActual = Mathf.Min(vidaActual + cantidad, vidaMax);
 
-        // Actualizar efecto de daño visual al curarse
         if (dañoVisual != null)
             dañoVisual.UpdateDañoVisual();
     }
 
-    // Tomar daño
     public void TomarDamage(int cantidad)
     {
         vidaActual -= cantidad;
         vidaActual = Mathf.Max(vidaActual, 0);
 
-        // Actualizar efecto de daño visual al recibir daño
         if (dañoVisual != null)
             dañoVisual.UpdateDañoVisual();
 
-        // Activar parpadeo de daño
         if (parpadeoDaño != null)
             parpadeoDaño.ActivarParpadeo();
 
@@ -51,7 +60,6 @@ public class EstadisticasJugador : MonoBehaviour
 
     private void Muerte()
     {
-        Debug.Log("Jugador ha muerto gg");
-        // Aquí puedes agregar animaciones, reinicio de escena, etc.
+        Debug.Log("Jugador ha muerto");
     }
 }

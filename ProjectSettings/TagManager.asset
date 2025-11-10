@@ -8,6 +8,9 @@ TagManager:
   - Cura
   - compuerta
   - Ascensor
+  - BloqueoGenerador
+  - Enemigo
+  - Boton
   layers:
   - Default
   - TransparentFX
@@ -16,8 +19,8 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
-  - 
+  - invisble
+  - Suelo
   - 
   - 
   - 
