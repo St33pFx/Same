@@ -13281,6 +13281,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1946880456962243320, guid: e967c23433798984aa4bb0af090eda76, type: 3}
+      propertyPath: m_Size.x
+      value: 8.530907
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946880456962243320, guid: e967c23433798984aa4bb0af090eda76, type: 3}
+      propertyPath: m_Size.z
+      value: 9.159999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946880456962243320, guid: e967c23433798984aa4bb0af090eda76, type: 3}
+      propertyPath: m_Center.x
+      value: -9.489555
+      objectReference: {fileID: 0}
     - target: {fileID: 2079183086666656382, guid: e967c23433798984aa4bb0af090eda76, type: 3}
       propertyPath: fadeImage
       value: 
