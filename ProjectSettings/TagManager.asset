@@ -9,6 +9,8 @@ TagManager:
   - compuerta
   - Ascensor
   - BloqueoGenerador
+  - Enemigo
+  - Boton
   layers:
   - Default
   - TransparentFX

@@ -2,23 +2,23 @@
 
 public class MostrarBoton : MonoBehaviour
 {
-    [Header("Objeto de UI a mostrar")]
-    public GameObject iconoUI;
-
     [Header("Tecla de interacción")]
     public KeyCode teclaInteraccion = KeyCode.E;
 
+    private GameObject iconoUI;
     private bool jugadorDentro = false;
 
     private void Start()
     {
-        if (iconoUI != null)
-            iconoUI.SetActive(false);
+        // Obtiene la referencia desde el UIManager
+        iconoUI = UIManager.Instance != null ? UIManager.Instance.botonInteraccion : null;
+
+        if (iconoUI == null)
+            Debug.LogWarning("MostrarBoton: No se encontró el botón de interacción desde UIManager.");
     }
 
     private void Update()
     {
-        // Si el jugador está dentro y presiona la tecla
         if (jugadorDentro && Input.GetKeyDown(teclaInteraccion))
         {
             OcultarIcono();
@@ -43,7 +43,6 @@ public class MostrarBoton : MonoBehaviour
         }
     }
 
-    // 🔹 Esto se ejecuta automáticamente si el objeto es destruido o desactivado
     private void OnDisable()
     {
         OcultarIcono();
