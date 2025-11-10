@@ -3,19 +3,20 @@ using UnityEngine.AI;
 
 public class MovimientoEnemigo : MonoBehaviour
 {
-    private GameObject jugador;
+    private Transform jugador;
     private NavMeshAgent agente;
 
     private void Start()
     {
-        jugador = GameObject.FindGameObjectWithTag("Player");
+        jugador = GameObject.FindGameObjectWithTag("Player").transform;
+        agente = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
     {
         if (jugador != null)
         {
-            agente.SetDestination(jugador.transform.position);
+            agente.SetDestination(jugador.position);
         }
     }
 }

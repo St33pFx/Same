@@ -36,12 +36,6 @@ public class Pausa : MonoBehaviour
         if (scriptMovimientoCamara != null)
             scriptMovimientoCamara.enabled = false;
 
-        // Pausar música
-        //if (AudioManager.Instance != null)
-        //{
-        //    AudioManager.Instance.PausarMusica();
-        //}
-
         // Seleccionar automáticamente el primer botón del menú (opcional)
         EventSystem.current?.SetSelectedGameObject(objetoMenuPausa);
     }
@@ -61,12 +55,6 @@ public class Pausa : MonoBehaviour
         // Reactivar el script de movimiento de cámara
         if (scriptMovimientoCamara != null)
             scriptMovimientoCamara.enabled = true;
-
-        // Reanudar música
-        //if (AudioManager.Instance != null)
-        //{
-        //    AudioManager.Instance.ReanudarMusica();
-        //}
 
         // Deseleccionar botón actual para evitar problemas de UI
         EventSystem.current?.SetSelectedGameObject(null);

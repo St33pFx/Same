@@ -91,7 +91,52 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 955db2a790b11dd4ba6c9def42fad657, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8168401411942859547}
+    - targetCorrespondingSourceObject: {fileID: 8029995029160789055, guid: 955db2a790b11dd4ba6c9def42fad657, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 336667228602129270}
+    - targetCorrespondingSourceObject: {fileID: 8029995029160789055, guid: 955db2a790b11dd4ba6c9def42fad657, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3410959258498691209}
   m_SourcePrefab: {fileID: 100100000, guid: 955db2a790b11dd4ba6c9def42fad657, type: 3}
+--- !u!1 &4369301182551333605 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8029995029160789055, guid: 955db2a790b11dd4ba6c9def42fad657, type: 3}
+  m_PrefabInstance: {fileID: 6040072197872197338}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &336667228602129270
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4369301182551333605}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.02, y: 0.00030725874, z: 0.0019398641}
+  m_Center: {x: 0.015, y: 0, z: -0.00004916744}
+--- !u!114 &3410959258498691209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4369301182551333605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c57b3402a7036845af8b283460663e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: "Assembly-CSharp::Da\xF1oConCuchillo"
+  dano: 30
 --- !u!1 &6851044275806774155 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 955db2a790b11dd4ba6c9def42fad657, type: 3}
