@@ -149,7 +149,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Parpadeo Lento 0
+  m_Name: Parpadeo Constante
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -163,7 +163,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 48590ead84951284e830a7a18e4894f7, type: 2}
+  m_Motion: {fileID: 7400000, guid: 58fc351baa34f4b409b371e6ed800cdc, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
