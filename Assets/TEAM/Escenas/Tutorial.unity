@@ -630,7 +630,6 @@ MonoBehaviour:
   m_Script: {fileID: 2047127101}
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.SceneObjectIDMapSceneAsset
-  m_Entries: []
 --- !u!4 &172372697
 Transform:
   m_ObjectHideFlags: 19
@@ -4718,7 +4717,6 @@ MonoBehaviour:
   m_Script: {fileID: 1219590150}
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.SceneObjectIDMapSceneAsset
-  m_Entries: []
 --- !u!4 &656606153
 Transform:
   m_ObjectHideFlags: 19
