@@ -19,7 +19,9 @@ GameObject:
   - component: {fileID: 4300886972803516566}
   - component: {fileID: 8201148666016162286}
   - component: {fileID: 8194922318303144209}
+  - component: {fileID: 7115557880295969856}
   - component: {fileID: 7170012926327712611}
+  - component: {fileID: 9174964678215351834}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -106,7 +108,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1711242236113571958}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 6fd5cda20e49f5f4392698b9a4721b27, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -246,6 +248,32 @@ MonoBehaviour:
   firePoint: {fileID: 9215487364930108868}
   playerCamera: {fileID: 1852543349863543428}
   bulletSpeed: 60
+--- !u!114 &7115557880295969856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711242236113571958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c033b1b8bcad941b417179a477f381, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: "Assembly-CSharp::Da\xF1oVisual"
+  stats: {fileID: 4300886972803516566}
+  "imagenesDa\xF1o":
+  - imagen: {fileID: 0}
+    alfaMaximo: 1
+    umbralVida: 0.806
+    duracionTransicion: 0
+  - imagen: {fileID: 0}
+    alfaMaximo: 1
+    umbralVida: 0.403
+    duracionTransicion: 0
+  - imagen: {fileID: 0}
+    alfaMaximo: 1
+    umbralVida: 0.208
+    duracionTransicion: 0
 --- !u!114 &7170012926327712611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +289,22 @@ MonoBehaviour:
   prefabCuchillo: {fileID: 6851044275806774155, guid: f7bec4480e808844aad47e3cd4492aec, type: 3}
   puntoDeInstancia: {fileID: 3498221992695763335}
   nombreAnimacion: estocada
+--- !u!114 &9174964678215351834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711242236113571958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f32eb8b5cd16d13459458db331e4a12e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: "Assembly-CSharp::ParpadeoDa\xF1o"
+  animator: {fileID: 0}
+  triggerNombre: Parpadeo
+  stats: {fileID: 4300886972803516566}
+  vidaCritica: 20
 --- !u!1 &1747240297200308245
 GameObject:
   m_ObjectHideFlags: 0
