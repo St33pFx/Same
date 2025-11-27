@@ -8,24 +8,45 @@ public class ControlDePuerta : MonoBehaviour
     public string tagJugador = "Player";
 
     private Animator[] compuertasCercanas = new Animator[2];
+    private ControlDePuerta otroControlEnRango = null;
+
     private bool jugadorCerca = false;
-    private GameObject jugador;
+    private bool puertasAbiertas = false;
 
     void Update()
     {
-        if (compuertasCercanas[0] == null || compuertasCercanas[1] == null)
-        {
-            BuscarCompuertasEnGizmo();
-        }
+        BuscarCompuertasEnGizmo();
+        BuscarOtroControl();
 
         RevisarCompuertasFueraDeRango();
 
-        if (jugadorCerca && Input.GetKeyDown(KeyCode.E))
+        if (!HayDeteccionMutua())
         {
-            if (compuertasCercanas[0] != null && compuertasCercanas[1] != null)
-                CambiarEstadoPuertas();
-            else
-                Debug.LogWarning("[ControlDePuerta] no hay 2 compuertas dentro del rango");
+            if (puertasAbiertas)
+            {
+                Debug.Log("[ControlDePuerta] Detección mutua perdida: cerrando puertas.");
+            }
+            CerrarPuertas();
+            puertasAbiertas = false;
+        }
+        else
+        {
+            if (jugadorCerca && Input.GetKeyDown(KeyCode.E))
+            {
+                // Alternar estado
+                if (puertasAbiertas)
+                {
+                    CerrarPuertas();
+                    puertasAbiertas = false;
+                    Debug.Log("[ControlDePuerta] Jugador presionó E -> Cerrando puertas.");
+                }
+                else
+                {
+                    AbrirPuertas();
+                    puertasAbiertas = true;
+                    Debug.Log("[ControlDePuerta] Jugador presionó E -> Abriendo puertas.");
+                }
+            }
         }
     }
 
@@ -34,7 +55,6 @@ public class ControlDePuerta : MonoBehaviour
         if (other.CompareTag(tagJugador))
         {
             jugadorCerca = true;
-            jugador = other.gameObject;
         }
     }
 
@@ -43,24 +63,56 @@ public class ControlDePuerta : MonoBehaviour
         if (other.CompareTag(tagJugador))
         {
             jugadorCerca = false;
-            jugador = null;
         }
+    }
+    private void BuscarOtroControl()
+    {
+        Collider[] colliders = Physics.OverlapBox(transform.position, tamañoGizmo * 0.5f);
+
+        ControlDePuerta encontrado = null;
+
+        foreach (var col in colliders)
+        {
+            if (col.gameObject == this.gameObject) continue;
+
+            ControlDePuerta ctrl = col.GetComponent<ControlDePuerta>();
+            if (ctrl != null)
+            {
+                encontrado = ctrl;
+                break;
+            }
+        }
+
+        if (encontrado != otroControlEnRango)
+        {
+            otroControlEnRango = encontrado;
+            if (otroControlEnRango == null)
+            {
+                Debug.Log("[ControlDePuerta] No hay otro control en rango.");
+            }
+            else
+            {
+                Debug.Log($"[ControlDePuerta] Encontrado otro control: {otroControlEnRango.name}");
+            }
+        }
+    }
+    private bool HayDeteccionMutua()
+    {
+        if (otroControlEnRango == null) return false;
+        return otroControlEnRango.otroControlEnRango == this;
     }
 
     private void BuscarCompuertasEnGizmo()
     {
         Collider[] colliders = Physics.OverlapBox(transform.position, tamañoGizmo * 0.5f);
-        GameObject[] compuertas = System.Array.FindAll(System.Array.ConvertAll(colliders, c => c.gameObject),
+        GameObject[] compuertas = System.Array.FindAll(
+            System.Array.ConvertAll(colliders, c => c.gameObject),
             go => go.CompareTag(tagCompuerta));
 
         if (compuertas.Length < 2)
         {
-            Debug.LogWarning($"[ControlDePuerta] Se encontraron {compuertas.Length} compuerta(s) dentro del rango");
             compuertasCercanas[0] = compuertas.Length > 0 ? compuertas[0].GetComponent<Animator>() : null;
             compuertasCercanas[1] = null;
-
-            if (compuertasCercanas[0] != null)
-                compuertasCercanas[0].SetBool("abrir", false);
             return;
         }
 
@@ -85,31 +137,25 @@ public class ControlDePuerta : MonoBehaviour
         }
 
         compuertasCercanas = masCercanas;
-
-        Debug.Log($"[ControlDePuerta] se asignaron dos compuertas dentro del gizmo: " +
-                  $"{compuertasCercanas[0]?.name}, {compuertasCercanas[1]?.name}");
-
-        foreach (Animator anim in compuertasCercanas)
-        {
-            if (anim != null)
-            {
-                anim.SetBool("abrir", false);
-                anim.SetBool("cerrado", true);
-            }
-        }
     }
 
-    private void CambiarEstadoPuertas()
+    private void AbrirPuertas()
     {
         foreach (Animator anim in compuertasCercanas)
         {
             if (anim == null) continue;
+            anim.SetBool("abrir", true);
+            anim.SetBool("cerrado", false);
+        }
+    }
 
-            bool abierta = anim.GetBool("abrir");
-            anim.SetBool("abrir", !abierta);
-            anim.SetBool("cerrado", abierta);
-
-            Debug.Log($"[ControlDePuerta] Cambiando estado de {anim.name}: abrir = {!abierta}");
+    private void CerrarPuertas()
+    {
+        foreach (Animator anim in compuertasCercanas)
+        {
+            if (anim == null) continue;
+            anim.SetBool("abrir", false);
+            anim.SetBool("cerrado", true);
         }
     }
 
@@ -147,6 +193,12 @@ public class ControlDePuerta : MonoBehaviour
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawLine(transform.position, compuertasCercanas[1].transform.position);
+        }
+
+        if (otroControlEnRango != null)
+        {
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawLine(transform.position, otroControlEnRango.transform.position);
         }
     }
 }
