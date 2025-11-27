@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 595559348583064569}
   - component: {fileID: 1900992971307794975}
   - component: {fileID: 132039998402713925}
+  - component: {fileID: 3773578572601417221}
   - component: {fileID: 5179488899792133999}
   - component: {fileID: 6347786293738178418}
   - component: {fileID: -3952149362526912535}
@@ -114,6 +115,27 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &3773578572601417221
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5761599123757293842}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.50000006
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &5179488899792133999
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -166,4 +188,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 272d0e085ee183b4aa76ad6e5472bc8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: "Assembly-CSharp::ZonaDa\xF1o"
-  "da\xF1o": 10
+  "da\xF1o": 20
