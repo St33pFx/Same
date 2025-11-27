@@ -360,6 +360,14 @@ PrefabInstance:
       propertyPath: "parpadeoDa\xF1o"
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1735431236251391174, guid: 5db2b456809179e4e9280915c748f626, type: 3}
+      propertyPath: municionActual
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211617657036777612, guid: 5db2b456809179e4e9280915c748f626, type: 3}
+      propertyPath: radioDeDeteccion
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 2737387908018421236, guid: 5db2b456809179e4e9280915c748f626, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.96464

@@ -1552,6 +1552,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GeneradorPiso
   PreafabsPasillos:
   - {fileID: 745113791960360443}
+  - {fileID: 745113791960360443, guid: 1771d52a9fdd633439b65039f0f2bcd2, type: 3}
+  - {fileID: 745113791960360443, guid: c616ec7be1d59674a97db1d048f3ecc5, type: 3}
   puntoGeneracion: {fileID: 8691790383895643556}
   jugador: {fileID: 0}
   puedeGenerar: 1
@@ -5302,6 +5304,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GeneradorPiso
   PreafabsPasillos:
   - {fileID: 745113791960360443}
+  - {fileID: 745113791960360443, guid: 1771d52a9fdd633439b65039f0f2bcd2, type: 3}
+  - {fileID: 745113791960360443, guid: c616ec7be1d59674a97db1d048f3ecc5, type: 3}
   puntoGeneracion: {fileID: 4752483512171360186}
   jugador: {fileID: 0}
   puedeGenerar: 1
@@ -6432,6 +6436,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GeneradorPiso
   PreafabsPasillos:
   - {fileID: 745113791960360443}
+  - {fileID: 745113791960360443, guid: 1771d52a9fdd633439b65039f0f2bcd2, type: 3}
+  - {fileID: 745113791960360443, guid: c616ec7be1d59674a97db1d048f3ecc5, type: 3}
   puntoGeneracion: {fileID: 5491438031120164498}
   jugador: {fileID: 0}
   puedeGenerar: 1
@@ -7759,6 +7765,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GeneradorPiso
   PreafabsPasillos:
   - {fileID: 745113791960360443}
+  - {fileID: 745113791960360443, guid: 1771d52a9fdd633439b65039f0f2bcd2, type: 3}
+  - {fileID: 745113791960360443, guid: c616ec7be1d59674a97db1d048f3ecc5, type: 3}
   puntoGeneracion: {fileID: 7740427071676998422}
   jugador: {fileID: 0}
   puedeGenerar: 1
