@@ -6977,7 +6977,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7b4d209ece64df4aba87fae99bf9c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MunicionPersistente
-  municionActual: 0
+  municionActual: 30
 --- !u!1 &605147987 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 844212627904903295, guid: 1186f52c1644dc54db6206d8e9833640, type: 3}
@@ -24028,3 +24028,4 @@ SceneRoots:
   - {fileID: 602355018}
   - {fileID: 264214704}
   - {fileID: 1092154094}
+  - {fileID: 103164601}
