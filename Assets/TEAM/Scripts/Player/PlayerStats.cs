@@ -23,15 +23,18 @@ public class PlayerStats : MonoBehaviour
     public void tomarDamage(int cantidadDamage)
     {
         vidaActuali -= cantidadDamage;
-        if(vidaActuali <= 0)
+        SoundManager.Instance.PlayPlayerHit();
+        if (vidaActuali <= 0)
         {
             Muerte();
         }
+        
     }
 
     public void Muerte()
     {
         Debug.Log("Jugador ha muerto gg");
-
+        SoundManager.Instance.StopMusic();
+        SoundManager.Instance.PlayDeath();
     }
 }

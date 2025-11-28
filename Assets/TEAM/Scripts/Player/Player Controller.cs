@@ -21,10 +21,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float mouseSensitivity = 10f;
     [SerializeField] private float cameraFov = 60f;
 
+    [Header("Footstep Settings")]
+    [SerializeField] private float walkStepInterval = 0.5f; // tiempo entre pasos al caminar
+    [SerializeField] private float runStepInterval = 0.3f;  // tiempo entre pasos al correr
+
     private Vector3 playerMovementInput;
     private Vector3 playerMouseInput;
     private float xRotation = 0f;
 
+    private float footstepTimer = 0f;
+    private bool isMoving = false;
+    private bool isRunning = false;
 
     void Start()
     {
@@ -33,33 +40,34 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
     }
 
-
     private void Update()
     {
+        // Input de movimiento y mouse
         playerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
         playerMouseInput = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0f);
 
+        // Flags básicos
+        isMoving = playerMovementInput.magnitude > 0.1f;
+        isRunning = Input.GetKey(KeyCode.LeftShift) && staminaPlayer > 0f && isMoving;
+
         MovePlayer();
         MoveCameraPlayer();
+        HandleFootsteps();
     }
 
     private void MovePlayer()
     {
-        Vector3 MoveVector = transform.TransformDirection(playerMovementInput) * speedMovemnt;
-        rigidB.linearVelocity = new Vector3(MoveVector.x, rigidB.linearVelocity.y,  MoveVector.z);
+        // Velocidad según si corre o camina
+        float targetSpeed = isRunning ? 6f : 3f;
+        speedMovemnt = targetSpeed;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        Vector3 moveVector = transform.TransformDirection(playerMovementInput) * speedMovemnt;
+        rigidB.linearVelocity = new Vector3(moveVector.x, rigidB.linearVelocity.y, moveVector.z);
+
+        // Salto básico
+        if (Input.GetKeyDown(KeyCode.Space) && canJump && isGrounded)
         {
             rigidB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            speedMovemnt = 6f;
-        }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            speedMovemnt = 3f;
         }
 
         StaminaConsume();
@@ -76,13 +84,12 @@ public class PlayerController : MonoBehaviour
 
     private void StaminaConsume()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (isRunning)
         {
             staminaPlayer -= 5f * Time.deltaTime;
             if (staminaPlayer <= 0f)
             {
                 staminaPlayer = 0f;
-                speedMovemnt = 3f;
             }
         }
         else
@@ -98,4 +105,34 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void HandleFootsteps()
+    {
+        // Aquí luego puedes meter un chequeo de isGrounded real (raycast, etc.)
+        if (!isMoving || !isGrounded)
+        {
+            footstepTimer = 0f;
+            return;
+        }
+
+        footstepTimer += Time.deltaTime;
+
+        float currentInterval = isRunning ? runStepInterval : walkStepInterval;
+
+        if (footstepTimer >= currentInterval)
+        {
+            footstepTimer = 0f;
+
+            // Evita errores si por alguna razón no hay SoundManager
+            if (SoundManager.Instance == null) return;
+
+            if (isRunning)
+            {
+                SoundManager.Instance.PlayRun();
+            }
+            else
+            {
+                SoundManager.Instance.PlayWalk();
+            }
+        }
+    }
 }

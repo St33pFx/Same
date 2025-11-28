@@ -17,10 +17,18 @@ public class VidaEnemigo : MonoBehaviour
         {
             Morir();
         }
+        SoundManager.Instance.PlayEnemyHit();
     }
 
     private void Morir()
     {
+        EnemyCounter contador = FindAnyObjectByType<EnemyCounter>();
+        if (contador != null)
+        {
+            contador.RegistrarMuerte();
+        }
+        Destroy(gameObject);
+
         if (prefabDrop != null && Random.value <= probabilidadDrop)
         {
             Debug.Log("Instanciando drop en posición: " + transform.position);
@@ -31,6 +39,6 @@ public class VidaEnemigo : MonoBehaviour
             Debug.Log("No se generó drop. PrefabDrop=" + prefabDrop + " Probabilidad=" + probabilidadDrop);
         }
 
-        Destroy(gameObject);
+        
     }
 }
