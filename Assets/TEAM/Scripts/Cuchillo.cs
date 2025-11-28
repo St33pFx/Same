@@ -22,6 +22,7 @@ public class Cuchillo : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F) && animacionTerminada)
         {
+            SoundManager.Instance.PlayKnife();
             CrearCuchillo();
         }
 

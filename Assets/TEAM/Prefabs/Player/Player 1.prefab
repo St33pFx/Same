@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 7115557880295969856}
   - component: {fileID: 7170012926327712611}
   - component: {fileID: 9174964678215351834}
+  - component: {fileID: 8357901444729425970}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -174,6 +175,8 @@ MonoBehaviour:
   jumpForce: 4.5
   mouseSensitivity: 10
   cameraFov: 90
+  walkStepInterval: 0.5
+  runStepInterval: 0.3
 --- !u!114 &7658052093075696418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,6 +308,20 @@ MonoBehaviour:
   triggerNombre: Parpadeo
   stats: {fileID: 4300886972803516566}
   vidaCritica: 20
+--- !u!114 &8357901444729425970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711242236113571958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad5cd3f5f89fc44384e57666e448e66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GuizmoJugador
+  radioDeDeteccion: 10
+  gizmoColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &1747240297200308245
 GameObject:
   m_ObjectHideFlags: 0

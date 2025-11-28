@@ -771,8 +771,22 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Equipo SameBlood: \n\n-Bryan Luciano Gonzalez Gutierrez.\n\r\n-Edson Eruvey
-    Rodriguez Silva.\r\n\n\nProfesor:\n\n-Alan Rodriguez Alvarado.\n\n\r\n\n"
+  m_text: '- Equipo SameBlood -
+
+    
+
+
+
+    Profesor:
+
+
+    -Alan Rodriguez Alvarado.
+
+
+    
+
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2b61baa9741a7164c94a27f0854c5190, type: 2}
   m_sharedMaterial: {fileID: -5290473055052537862, guid: 2b61baa9741a7164c94a27f0854c5190, type: 2}

@@ -47,6 +47,7 @@ public class EstadisticasJugador : MonoBehaviour
     {
         vidaActual -= cantidad;
         vidaActual = Mathf.Max(vidaActual, 0);
+        SoundManager.Instance.PlayPlayerHit();
 
         if (dañoVisual != null)
             dañoVisual.UpdateDañoVisual();
@@ -61,5 +62,7 @@ public class EstadisticasJugador : MonoBehaviour
     private void Muerte()
     {
         Debug.Log("Jugador ha muerto");
+        SoundManager.Instance.StopMusic();
+        SoundManager.Instance.PlayDeath();
     }
 }

@@ -17,6 +17,7 @@ public class RecolectarMunicion : MonoBehaviour
             {
                 stats.AgregarMunicion(cantidadMunicion);
                 Debug.Log("Se agregaron " + cantidadMunicion + " balas. Total: " + stats.municionActual);
+                SoundManager.Instance.PlayPickupAmmo();
             }
 
             // Destruir el objeto de munición después de recogerlo

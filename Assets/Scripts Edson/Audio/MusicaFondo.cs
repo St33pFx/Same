@@ -2,88 +2,75 @@ using UnityEngine;
 
 public class MusicaFondo : MonoBehaviour
 {
-    private audio musicaActual;
-    private AudioSource sourceActual;
-    private int indiceAnterior = -1;
+    public static MusicaFondo Instance { get; private set; }
 
-    private AudioManager manager => AudioManager.instance;
+    [Header("Audio Source principal")]
+    [SerializeField] private AudioSource audioSource;
 
-    private audio[] ObtenerLista(string tipo)
+    [Header("Listas de música")]
+    public AudioClip[] musicaJuego;
+    public AudioClip[] musicaMuerte;
+    public AudioClip[] musicaMenu;
+    public AudioClip[] musicaSafeZone;
+
+    private void Awake()
     {
-        if (manager == null) return null;
-
-        return tipo switch
+        // Singleton
+        if (Instance != null && Instance != this)
         {
-            "musica" => manager.musica,
-            "musicaMuerte" => manager.musicaMuerte,
-            "musicaMenu" => manager.musicaMenu,
-            "safeZone" => manager.safeZone,
-            _ => null
-        };
-    }
-
-    private void DetenerMusicaActual()
-    {
-        if (sourceActual != null && sourceActual.isPlaying)
-            sourceActual.Stop();
-    }
-
-    private void ReproducirAudio(audio[] lista)
-    {
-        if (lista == null || lista.Length == 0)
-        {
-            Debug.LogWarning("[MusicaFondo] Lista vacía.");
+            Destroy(gameObject);
             return;
         }
 
-        int indice = Random.Range(0, lista.Length);
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
 
-        // Evitar repetición consecutiva
-        if (lista.Length > 1)
+        if (audioSource == null)
         {
-            while (indice == indiceAnterior)
-                indice = Random.Range(0, lista.Length);
+            audioSource = GetComponent<AudioSource>();
         }
-        indiceAnterior = indice;
 
-        audio nuevaMusica = lista[indice];
-
-        // Detener la pista actual
-        DetenerMusicaActual();
-
-        // Asignar y reproducir
-        musicaActual = nuevaMusica;
-        sourceActual = musicaActual.source;
-        sourceActual.Play();
-
-        Debug.Log($"[MusicaFondo] Reproduciendo: {musicaActual.nombre}");
+        if (audioSource != null)
+        {
+            audioSource.loop = true;
+            audioSource.playOnAwake = false; // IMPORTANTÍSIMO: que no suene solo
+        }
     }
-
-    public void ReproducirMusicaAleatoria() => ReproducirAudio(ObtenerLista("musica"));
-    public void ReproducirMusicaMuerteAleatoria() => ReproducirAudio(ObtenerLista("musicaMuerte"));
-    public void ReproducirMusicaMenuAleatoria() => ReproducirAudio(ObtenerLista("musicaMenu"));
-    public void ReproducirMusicaSafezoneAleatoria() => ReproducirAudio(ObtenerLista("safeZone"));
 
     public void DetenerTodaLaMusica()
     {
-        if (manager == null)
+        if (audioSource != null)
         {
-            Debug.LogWarning("[MusicaFondo] AudioManager no encontrado.");
-            return;
+            audioSource.Stop();
         }
+    }
 
-        audio[][] listas = { manager.musica, manager.musicaMuerte, manager.musicaMenu, manager.safeZone };
+    private void ReproducirClipAleatorio(AudioClip[] lista)
+    {
+        if (audioSource == null || lista == null || lista.Length == 0) return;
 
-        foreach (var lista in listas)
-        {
-            if (lista == null) continue;
-            foreach (var pista in lista)
-                pista.source.Stop();
-        }
+        int index = Random.Range(0, lista.Length);
+        audioSource.clip = lista[index];
+        audioSource.Play();
+    }
 
-        musicaActual = null;
-        sourceActual = null;
-        indiceAnterior = -1;
+    public void ReproducirMusicaAleatoria()
+    {
+        ReproducirClipAleatorio(musicaJuego);
+    }
+
+    public void ReproducirMusicaMuerteAleatoria()
+    {
+        ReproducirClipAleatorio(musicaMuerte);
+    }
+
+    public void ReproducirMusicaMenuAleatoria()
+    {
+        ReproducirClipAleatorio(musicaMenu);
+    }
+
+    public void ReproducirMusicaSafezoneAleatoria()
+    {
+        ReproducirClipAleatorio(musicaSafeZone);
     }
 }
-

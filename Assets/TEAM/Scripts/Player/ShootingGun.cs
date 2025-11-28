@@ -44,6 +44,8 @@ public class Shooter : MonoBehaviour
 
     void Shoot()
     {
+
+
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         Vector3 targetPoint;
 
@@ -59,5 +61,7 @@ public class Shooter : MonoBehaviour
         rb.linearVelocity = direction * bulletSpeed;
 
         Destroy(bullet, 2f);
+
+        SoundManager.Instance.PlayShoot();
     }
 }
