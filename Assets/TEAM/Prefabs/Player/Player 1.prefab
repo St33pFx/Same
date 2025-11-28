@@ -250,7 +250,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1895117607434151456, guid: 9da20bf4e1d22c04a9cc41a19e106cd1, type: 3}
   firePoint: {fileID: 9215487364930108868}
   playerCamera: {fileID: 1852543349863543428}
-  bulletSpeed: 60
+  velocidadBala: 40
+  cadencia: 0.1
 --- !u!114 &7115557880295969856
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -326,7 +326,7 @@ MonoBehaviour:
   m_AffectDiffuse: 1
   m_AffectSpecular: 1
   m_NonLightmappedOnly: 0
-  m_ShapeWidth: 6.02
+  m_ShapeWidth: 7.0169487
   m_ShapeHeight: 26.523678
   m_AspectRatio: 1
   m_ShapeRadius: 0.025
@@ -451,7 +451,7 @@ Light:
   serializedVersion: 11
   m_Type: 6
   m_Color: {r: 0.3254717, g: 0.8155328, b: 1, a: 1}
-  m_Intensity: 11.540565
+  m_Intensity: 81.301025
   m_Range: 4.57
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -465,7 +465,7 @@ Light:
     m_NormalBias: 0.4
     m_NearPlane: 0.2
     m_CullingMatrixOverride:
-      e00: 0.33222592
+      e00: 0.28502417
       e01: 0
       e02: 0
       e03: 0
@@ -492,11 +492,11 @@ Light:
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 2
-  m_AreaSize: {x: 6.02, y: 26.523678}
+  m_AreaSize: {x: 7.0169487, y: 26.523678}
   m_BounceIntensity: 1
   m_ColorTemperature: 20000
   m_UseColorTemperature: 1
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 2.285, w: 13.789768}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 2.285, w: 13.907084}
   m_UseBoundingSphereOverride: 1
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
@@ -514,7 +514,7 @@ Transform:
   m_GameObject: {fileID: 1159398170}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 15.75, y: 3.896, z: -41.76}
+  m_LocalPosition: {x: 15.75, y: 3.921, z: -41.76}
   m_LocalScale: {x: 1.4012, y: 2.5234, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1557,3 +1557,4 @@ SceneRoots:
   - {fileID: 1991507468}
   - {fileID: 1170545689}
   - {fileID: 1507693778}
+  - {fileID: 1768392099}

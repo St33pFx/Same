@@ -2,7 +2,7 @@
 - Project name: Same
 - Unity version: Unity 6000.2.9f1
 - Active game object:
-  - Name: enemigo
-  - Tag: Untagged
+  - Name: Player 1
+  - Tag: Player
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
