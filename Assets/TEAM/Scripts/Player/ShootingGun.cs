@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Shooter : MonoBehaviour
@@ -7,6 +8,9 @@ public class Shooter : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
     public Camera playerCamera;
+    public GameObject impactVFX;
+    public CameraRecoil cameraRecoil;
+    public WeaponRecoil weaponRecoil; 
     private EstadisticasJugador stats;
 
     [Header("Parámetros")]
@@ -71,7 +75,17 @@ public class Shooter : MonoBehaviour
         Vector3 targetPoint;
 
         if (Physics.Raycast(ray, out RaycastHit hit))
+        {
             targetPoint = hit.point;
+            if (impactVFX != null)
+            {
+                Quaternion rot = Quaternion.LookRotation(hit.normal);
+                Instantiate(impactVFX, hit.point, rot);
+            }
+        } 
+            
+
+
         else
             targetPoint = ray.GetPoint(100f);
 
@@ -84,5 +98,11 @@ public class Shooter : MonoBehaviour
         Destroy(bullet, 2f);
 
         SoundManager.Instance.PlayShoot();
+
+        if (cameraRecoil != null)
+            cameraRecoil.AddRecoil();
+
+        if (weaponRecoil != null)
+            weaponRecoil.AddWeaponRecoil();
     }
 }
