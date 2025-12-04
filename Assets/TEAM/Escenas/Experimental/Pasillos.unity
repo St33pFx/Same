@@ -459,6 +459,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8712250901375747963, guid: 3539373f24c5c6545af91142dd860c5a, type: 3}
+      propertyPath: m_Intensity
+      value: 22.828098
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -625,6 +629,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1854412598982385046, guid: ae6fe16fbafb3cb41a69afd6fc61723e, type: 3}
+      propertyPath: m_LightlayersMask
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1854412598982385046, guid: ae6fe16fbafb3cb41a69afd6fc61723e, type: 3}
+      propertyPath: m_ShadowNearPlane
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1854412598982385046, guid: ae6fe16fbafb3cb41a69afd6fc61723e, type: 3}
+      propertyPath: m_InnerSpotPercent
+      value: 64.79581
+      objectReference: {fileID: 0}
     - target: {fileID: 2924439544510021764, guid: ae6fe16fbafb3cb41a69afd6fc61723e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 66.14
@@ -675,7 +691,19 @@ PrefabInstance:
       objectReference: {fileID: 1373664323}
     - target: {fileID: 5690587528442343556, guid: ae6fe16fbafb3cb41a69afd6fc61723e, type: 3}
       propertyPath: m_Intensity
-      value: 24.612766
+      value: 2206.1665
+      objectReference: {fileID: 0}
+    - target: {fileID: 5690587528442343556, guid: ae6fe16fbafb3cb41a69afd6fc61723e, type: 3}
+      propertyPath: m_SpotAngle
+      value: 76.74301
+      objectReference: {fileID: 0}
+    - target: {fileID: 5690587528442343556, guid: ae6fe16fbafb3cb41a69afd6fc61723e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5690587528442343556, guid: ae6fe16fbafb3cb41a69afd6fc61723e, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8660021145897429514, guid: ae6fe16fbafb3cb41a69afd6fc61723e, type: 3}
       propertyPath: probeLayerMask.m_Bits
@@ -1140,6 +1168,51 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 751c5662ade46ef4693619e755f8de6c, type: 3}
+--- !u!1 &2025205072
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2025205073}
+  - component: {fileID: 2025205074}
+  m_Layer: 0
+  m_Name: contador monolitos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2025205073
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025205072}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 74.74808, y: 0.28528, z: -8.17153}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2025205074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025205072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 354290afc7fae664b8cbe5dad0ce2eee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ContadorMonolitos
+  monolitos: 0
 --- !u!1 &2112943794
 GameObject:
   m_ObjectHideFlags: 0
@@ -1199,3 +1272,5 @@ SceneRoots:
   - {fileID: 139381620}
   - {fileID: 1565052848}
   - {fileID: 1773208603}
+  - {fileID: 1170838066}
+  - {fileID: 2025205073}
