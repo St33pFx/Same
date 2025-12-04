@@ -44,7 +44,7 @@ Light:
   serializedVersion: 11
   m_Type: 6
   m_Color: {r: 0.6650944, g: 0.7320755, b: 1, a: 1}
-  m_Intensity: 4.867217
+  m_Intensity: 19.901701
   m_Range: 4.6772733
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -5895,7 +5895,7 @@ MonoBehaviour:
     m_CaptureRotation: {x: 0, y: 0, z: 0, w: 0}
     m_FieldOfView: 0
     m_Aspect: 0
-  m_HasValidSHForNormalization: 1
+  m_HasValidSHForNormalization: 0
   m_SHForNormalization:
     'sh[ 0]': 3.4028235e+38
     'sh[ 1]': 0

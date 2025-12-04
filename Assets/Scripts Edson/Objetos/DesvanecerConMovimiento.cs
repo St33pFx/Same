@@ -9,9 +9,17 @@ public class DesvanecerSuave : MonoBehaviour
     private Vector3 escalaInicial;
     private bool jugadorDentro = false; // Detecta si el jugador está dentro del trigger
 
+    private ContadorMonolitos contador;
+
     void Start()
     {
         escalaInicial = transform.localScale;
+        contador = FindAnyObjectByType<ContadorMonolitos>();
+
+        if (contador == null)
+        {
+            Debug.LogWarning("No se encontró un ContadorMonolitos en la escena.");
+        }
     }
 
     void Update()

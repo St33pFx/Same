@@ -1,54 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1343786519060842056
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7235048711051115192}
-  - component: {fileID: 9169484597863868979}
-  m_Layer: 0
-  m_Name: WeaponHolder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7235048711051115192
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1343786519060842056}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4690452796378002920}
-  m_Father: {fileID: 7138061628275203480}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9169484597863868979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1343786519060842056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1a635e1ecf81b543a2c1f87d7bf6306, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponRecoil
-  kickbackAmount: 0.1
-  sideKickAmount: 0.05
-  snappiness: 10
-  returnSpeed: 7
 --- !u!1 &1711242236113571958
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,9 +250,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1895117607434151456, guid: 9da20bf4e1d22c04a9cc41a19e106cd1, type: 3}
   firePoint: {fileID: 9215487364930108868}
   playerCamera: {fileID: 1852543349863543428}
-  impactVFX: {fileID: 2136318754925508636, guid: ca77c0d757be24849b75aad5e6cc7ed5, type: 3}
-  cameraRecoil: {fileID: 2407449621706570052}
-  weaponRecoil: {fileID: 9169484597863868979}
   velocidadBala: 40
   cadencia: 0.1
 --- !u!114 &7115557880295969856
@@ -514,7 +462,6 @@ GameObject:
   - component: {fileID: 1431758129310999504}
   - component: {fileID: 1345847478775388672}
   - component: {fileID: 8660021145897429514}
-  - component: {fileID: 2407449621706570052}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: Untagged
@@ -535,7 +482,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7235048711051115192}
+  - {fileID: 4690452796378002920}
   - {fileID: 1456273439565553744}
   - {fileID: 3498221992695763335}
   m_Father: {fileID: 4231751588535057080}
@@ -775,69 +722,33 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
---- !u!114 &2407449621706570052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5093781030805133446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 378eb08364677f845a87c4d0bbdd2b2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CameraRecoil
-  recoilAngle: 4
-  recoilKickback: 0.05
-  snappiness: 10
-  returnSpeed: 8
 --- !u!1001 &6363979887077556607
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 7235048711051115192}
+    m_TransformParent: {fileID: 7138061628275203480}
     m_Modifications:
     - target: {fileID: 1300802134795906605, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_Name
       value: rifle
       objectReference: {fileID: 0}
     - target: {fileID: 1632663477312025083, guid: 4839894f9c84216428f301074c377652, type: 3}
-      propertyPath: m_Range
-      value: 31.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1632663477312025083, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_Intensity
-      value: 3183.0989
+      value: 105.06424
       objectReference: {fileID: 0}
     - target: {fileID: 1632663477312025083, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_LightUnit
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1632663477312025083, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_SpotAngle
-      value: 62.249966
+      value: 62.82122
       objectReference: {fileID: 0}
     - target: {fileID: 1632663477312025083, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_Lightmapping
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1632663477312025083, guid: 4839894f9c84216428f301074c377652, type: 3}
-      propertyPath: m_Shadows.m_Type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1632663477312025083, guid: 4839894f9c84216428f301074c377652, type: 3}
-      propertyPath: m_BounceIntensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1632663477312025083, guid: 4839894f9c84216428f301074c377652, type: 3}
-      propertyPath: m_RenderingLayerMask
-      value: 248
-      objectReference: {fileID: 0}
-    - target: {fileID: 1632663477312025083, guid: 4839894f9c84216428f301074c377652, type: 3}
-      propertyPath: m_EnableSpotReflector
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1632663477312025083, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_BoundingSphereOverride.w
@@ -857,7 +768,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1821336659890025623, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.5303005
+      value: 1.5303001
       objectReference: {fileID: 0}
     - target: {fileID: 1821336659890025623, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_LocalScale.y
@@ -869,11 +780,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1821336659890025623, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.09200001
+      value: 0.092
       objectReference: {fileID: 0}
     - target: {fileID: 1821336659890025623, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.15810001
+      value: -0.1581
       objectReference: {fileID: 0}
     - target: {fileID: 1821336659890025623, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_LocalPosition.z
@@ -908,20 +819,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4750549467791858921, guid: 4839894f9c84216428f301074c377652, type: 3}
-      propertyPath: m_LightlayersMask
-      value: 248
-      objectReference: {fileID: 0}
-    - target: {fileID: 4750549467791858921, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_InnerSpotPercent
-      value: 30.360563
+      value: 56.994225
       objectReference: {fileID: 0}
     - target: {fileID: 4750549467791858921, guid: 4839894f9c84216428f301074c377652, type: 3}
       propertyPath: m_VolumetricDimmer
       value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4750549467791858921, guid: 4839894f9c84216428f301074c377652, type: 3}
-      propertyPath: m_UseContactShadow.m_Override
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
