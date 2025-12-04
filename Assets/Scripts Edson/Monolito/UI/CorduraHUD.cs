@@ -1,14 +1,12 @@
 using UnityEngine;
 
-using UnityEngine;
-
 public class CorduraHUD : MonoBehaviour
 {
     public static CorduraHUD Instance;
 
     [Header("Referencias de UI")]
     public GameObject iconoCordura;
-    public Cordura corduraJugador; // Referencia al script de cordura
+    public Cordura corduraJugador;
 
     [Header("Fade configuración")]
     [Range(0f, 2f)] public float fadeInTime = 0.3f;
@@ -21,8 +19,13 @@ public class CorduraHUD : MonoBehaviour
 
     private void Awake()
     {
+        // Singleton
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+
+        // Buscar Cordura automáticamente
+        if (corduraJugador == null)
+            corduraJugador = FindObjectOfType<Cordura>();
     }
 
     private void Start()
@@ -33,9 +36,6 @@ public class CorduraHUD : MonoBehaviour
             if (iconoCG == null) iconoCG = iconoCordura.AddComponent<CanvasGroup>();
             iconoCG.alpha = 0f;
         }
-
-        if (corduraJugador == null)
-            corduraJugador = FindObjectOfType<Cordura>();
     }
 
     private void Update()
@@ -49,7 +49,7 @@ public class CorduraHUD : MonoBehaviour
             return;
         }
 
-        // Si pasó tiempoVisible desde la última pérdida, ocultar icono
+        // Ocultar después de X segundos sin perder cordura
         if (Time.time - tiempoUltimaPerdida > tiempoVisible)
         {
             OcultarIcono();

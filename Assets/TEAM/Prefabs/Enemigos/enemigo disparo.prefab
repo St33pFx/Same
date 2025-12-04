@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &896328493490441235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9047823027873281014}
+  m_Layer: 0
+  m_Name: Punto disparo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9047823027873281014
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896328493490441235}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.73}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5287069162336169029}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7683270938862655708
 GameObject:
   m_ObjectHideFlags: 0
@@ -16,6 +47,8 @@ GameObject:
   - component: {fileID: 6937332834077277793}
   - component: {fileID: 2253357547636278025}
   - component: {fileID: 7162424574568045651}
+  - component: {fileID: 8541293570402436856}
+  - component: {fileID: 3816467314015485219}
   m_Layer: 0
   m_Name: enemigo disparo
   m_TagString: Enemigo
@@ -35,7 +68,8 @@ Transform:
   m_LocalPosition: {x: 91.35313, y: 0.81, z: -0.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 9047823027873281014}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8250868066248340798
@@ -132,7 +166,7 @@ MonoBehaviour:
   visionAlto: 4.86
   playerTag: Player
   proyectilPrefab: {fileID: 5761599123757293842, guid: dca39dd6a6ef356428cfa764b7a667c2, type: 3}
-  puntoDisparo: {fileID: 0}
+  puntoDisparo: {fileID: 9047823027873281014}
   fuerzaDisparo: 20
   tiempoEntreDisparos: 1.5
   velocidadRotacion: 60
@@ -194,3 +228,41 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &8541293570402436856
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7683270938862655708}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3816467314015485219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7683270938862655708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea2c4fe9ed72884f9ac6dd4b640b864, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MonolitoCordura
+  cordura: {fileID: 0}
+  visualCordura: {fileID: 0}
+  perdidaPorSegundo: 50

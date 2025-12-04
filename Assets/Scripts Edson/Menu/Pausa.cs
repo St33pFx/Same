@@ -7,16 +7,23 @@ public class Pausa : MonoBehaviour
     public GameObject objetoMenuPausa;
     public bool pausa = false;
 
-    [Header("Referencia al script de cámara")]
-    public MonoBehaviour scriptMovimientoCamara; // Asigna tu script de cámara en el Inspector
+    private PlayerController scriptMovimiento; // Script de movimiento del jugador
+
+    private void Start()
+    {
+        // Buscar automáticamente el script de movimiento en la escena
+        scriptMovimiento = FindObjectOfType<PlayerController>();
+
+        if (scriptMovimiento == null)
+            Debug.LogWarning("No se encontró PlayerController en la escena.");
+    }
 
     private void Update()
     {
-        // Detectar Escape incluso si Time.timeScale = 0
-        if (Input.GetKeyDown(KeyCode.Escape))
+        // Solo abre el menú con Esc
+        if (Input.GetKeyDown(KeyCode.Escape) && !pausa)
         {
-            if (!pausa) AbrirMenu();
-            else CerrarMenu();
+            AbrirMenu();
         }
     }
 
@@ -25,18 +32,21 @@ public class Pausa : MonoBehaviour
         pausa = true;
         objetoMenuPausa.SetActive(true);
 
-        // Pausar el juego
         Time.timeScale = 0f;
-
-        // Cursor visible y desbloqueado
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
-        // Desactivar el script de movimiento de cámara
-        if (scriptMovimientoCamara != null)
-            scriptMovimientoCamara.enabled = false;
+        if (scriptMovimiento != null)
+        {
+            // Desactivar movimiento
+            scriptMovimiento.enabled = false;
 
-        // Seleccionar automáticamente el primer botón del menú (opcional)
+            // Desactivar disparo
+            Shooter shooter = scriptMovimiento.GetComponent<Shooter>();
+            if (shooter != null)
+                shooter.enabled = false;
+        }
+
         EventSystem.current?.SetSelectedGameObject(objetoMenuPausa);
     }
 
@@ -45,18 +55,21 @@ public class Pausa : MonoBehaviour
         pausa = false;
         objetoMenuPausa.SetActive(false);
 
-        // Reanudar el juego
         Time.timeScale = 1f;
-
-        // Cursor oculto y bloqueado
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        // Reactivar el script de movimiento de cámara
-        if (scriptMovimientoCamara != null)
-            scriptMovimientoCamara.enabled = true;
+        if (scriptMovimiento != null)
+        {
+            // Reactivar movimiento
+            scriptMovimiento.enabled = true;
 
-        // Deseleccionar botón actual para evitar problemas de UI
+            // Reactivar disparo
+            Shooter shooter = scriptMovimiento.GetComponent<Shooter>();
+            if (shooter != null)
+                shooter.enabled = true;
+        }
+
         EventSystem.current?.SetSelectedGameObject(null);
     }
 }

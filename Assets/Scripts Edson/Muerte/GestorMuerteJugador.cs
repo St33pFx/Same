@@ -1,24 +1,28 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GestorMuerteJugador : MonoBehaviour
 {
-    [Header("Configuraci�n del Fade")]
-    [SerializeField] private Image fadeImage; // Imagen negra en el Canvas
-    [Range(0.2f, 5f)] public float velocidadFade = 1.5f; // Duraci�n del fade in
+    [Header("Configuración del Fade")]
+    [SerializeField] private Image fadeImage;
+    [Range(0.2f, 5f)] public float velocidadFade = 1.5f;
 
-    [Header("Configuraci�n de escena")]
-    public string escenaDestino = "GameOver"; // Nombre de la escena a cargar
+    [Header("Configuración de escena")]
+    public string escenaDestino = "GameOver";
 
     private EstadisticasJugador stats;
     private bool jugadorMurio = false;
 
+    private PlayerController playerController;
+    private Shooter playerShooter;
+
     private void Start()
     {
-        // Buscar componente de vida del jugador autom�ticamente
+        // Buscar estadísticas del jugador
         stats = FindObjectOfType<EstadisticasJugador>();
 
+        // Buscar imagen del fade por tag si no está asignada
         if (fadeImage == null)
         {
             fadeImage = GameObject.FindGameObjectWithTag("Fade")?.GetComponent<Image>();
@@ -27,9 +31,20 @@ public class GestorMuerteJugador : MonoBehaviour
         if (fadeImage != null)
         {
             Color c = fadeImage.color;
-            c.a = 0;
+            c.a = 0f;
             fadeImage.color = c;
         }
+        else
+        {
+            Debug.LogWarning("⚠️ No se encontró una imagen con tag 'Fade' para el fade de muerte.");
+        }
+
+        // Buscar PlayerController y Shooter
+        PlayerController pc = FindObjectOfType<PlayerController>();
+        if (pc != null) playerController = pc;
+
+        Shooter sh = pc != null ? pc.GetComponent<Shooter>() : null;
+        if (sh != null) playerShooter = sh;
     }
 
     private void Update()
@@ -43,10 +58,15 @@ public class GestorMuerteJugador : MonoBehaviour
 
     private void IniciarSecuenciaMuerte()
     {
+        // Desactivar controles del jugador
+        if (playerController != null) playerController.enabled = false;
+        if (playerShooter != null) playerShooter.enabled = false;
+
         if (fadeImage != null)
         {
-            // Fade in usando LeanTween
+            // Activar fade con LeanTween ignorando Time.timeScale
             LeanTween.value(fadeImage.gameObject, 0f, 1f, velocidadFade)
+                .setIgnoreTimeScale(true)
                 .setOnUpdate((float valor) =>
                 {
                     Color c = fadeImage.color;
@@ -60,7 +80,6 @@ public class GestorMuerteJugador : MonoBehaviour
         }
         else
         {
-            // Si no hay imagen, carga directo
             SceneManager.LoadScene(escenaDestino);
         }
     }

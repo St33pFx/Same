@@ -1,24 +1,34 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Collections;
 
 public class TriggerSceneAndCollider : MonoBehaviour
 {
     [Header("Nombre de la escena a cargar")]
-    public string sceneName; // Nombre de la escena a cargar
+    public string sceneName;
 
     [Header("Collider a activar")]
-    public Collider colliderToActivate; // Collider que se activará
+    public Collider colliderToActivate;
 
     [Header("Duración del fade (segundos)")]
-    public float fadeDuration = 1.5f; // Tiempo que tarda el fade antes del cambio
+    public float fadeDuration = 1.5f;
 
     [Header("Imagen para el fade in")]
-    public Image fadeImage; // Imagen del UI con alfa inicial en 0
+    public Image fadeImage;
 
     private bool playerInTrigger = false;
     private bool sceneChangeStarted = false;
+
+    private void Awake()
+    {
+        // Inicializar alfa de la imagen en 0
+        if (fadeImage != null)
+        {
+            Color c = fadeImage.color;
+            c.a = 0f;
+            fadeImage.color = c;
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -36,37 +46,34 @@ public class TriggerSceneAndCollider : MonoBehaviour
     {
         if (playerInTrigger && Input.GetKeyDown(KeyCode.E) && !sceneChangeStarted)
         {
-            // Activar el collider si se ha asignado
+            sceneChangeStarted = true;
+
+            // Activar el collider asignado
             if (colliderToActivate != null)
                 colliderToActivate.enabled = true;
 
-            // Iniciar el cambio de escena con fade
-            if (!string.IsNullOrEmpty(sceneName))
+            // Iniciar fade con LeanTween
+            if (fadeImage != null)
             {
-                sceneChangeStarted = true;
-                StartCoroutine(FadeAndChangeScene());
+                fadeImage.gameObject.SetActive(true);
+
+                LeanTween.value(fadeImage.gameObject, fadeImage.color.a, 1f, fadeDuration)
+                    .setIgnoreTimeScale(true) // funciona aunque Time.timeScale = 0
+                    .setOnUpdate((float val) =>
+                    {
+                        Color c = fadeImage.color;
+                        c.a = val;
+                        fadeImage.color = c;
+                    })
+                    .setOnComplete(() =>
+                    {
+                        SceneManager.LoadScene(sceneName);
+                    });
+            }
+            else
+            {
+                SceneManager.LoadScene(sceneName);
             }
         }
-    }
-
-    private IEnumerator FadeAndChangeScene()
-    {
-        if (fadeImage != null)
-        {
-            Color color = fadeImage.color;
-            float tiempo = 0f;
-
-            // Aumentar el alfa suavemente hasta 1
-            while (tiempo < fadeDuration)
-            {
-                tiempo += Time.deltaTime;
-                color.a = Mathf.Lerp(0f, 1f, tiempo / fadeDuration);
-                fadeImage.color = color;
-                yield return null;
-            }
-        }
-
-        // Cambiar la escena justo al terminar el fade
-        SceneManager.LoadScene(sceneName);
     }
 }

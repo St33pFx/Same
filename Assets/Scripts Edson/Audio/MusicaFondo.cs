@@ -2,75 +2,88 @@ using UnityEngine;
 
 public class MusicaFondo : MonoBehaviour
 {
-    public static MusicaFondo Instance { get; private set; }
+    private audio musicaActual;
+    private AudioSource sourceActual;
+    private int indiceAnterior = -1;
 
-    [Header("Audio Source principal")]
-    [SerializeField] private AudioSource audioSource;
+    private AudioManager manager => AudioManager.instance;
 
-    [Header("Listas de música")]
-    public AudioClip[] musicaJuego;
-    public AudioClip[] musicaMuerte;
-    public AudioClip[] musicaMenu;
-    public AudioClip[] musicaSafeZone;
-
-    private void Awake()
+    private audio[] ObtenerLista(string tipo)
     {
-        // Singleton
-        if (Instance != null && Instance != this)
+        if (manager == null) return null;
+
+        return tipo switch
         {
-            Destroy(gameObject);
+            "musica" => manager.musica,
+            "musicaMuerte" => manager.musicaMuerte,
+            "musicaMenu" => manager.musicaMenu,
+            "safeZone" => manager.safeZone,
+            _ => null
+        };
+    }
+
+    private void DetenerMusicaActual()
+    {
+        if (sourceActual != null && sourceActual.isPlaying)
+            sourceActual.Stop();
+    }
+
+    private void ReproducirAudio(audio[] lista)
+    {
+        if (lista == null || lista.Length == 0)
+        {
+            Debug.LogWarning("[MusicaFondo] Lista vacía.");
             return;
         }
 
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
+        int indice = Random.Range(0, lista.Length);
 
-        if (audioSource == null)
+        // Evitar repetición consecutiva
+        if (lista.Length > 1)
         {
-            audioSource = GetComponent<AudioSource>();
+            while (indice == indiceAnterior)
+                indice = Random.Range(0, lista.Length);
         }
+        indiceAnterior = indice;
 
-        if (audioSource != null)
-        {
-            audioSource.loop = true;
-            audioSource.playOnAwake = false; // IMPORTANTÍSIMO: que no suene solo
-        }
+        audio nuevaMusica = lista[indice];
+
+        // Detener la pista actual
+        DetenerMusicaActual();
+
+        // Asignar y reproducir
+        musicaActual = nuevaMusica;
+        sourceActual = musicaActual.source;
+        sourceActual.Play();
+
+        Debug.Log($"[MusicaFondo] Reproduciendo: {musicaActual.nombre}");
     }
+
+    public void ReproducirMusicaAleatoria() => ReproducirAudio(ObtenerLista("musica"));
+    public void ReproducirMusicaMuerteAleatoria() => ReproducirAudio(ObtenerLista("musicaMuerte"));
+    public void ReproducirMusicaMenuAleatoria() => ReproducirAudio(ObtenerLista("musicaMenu"));
+    public void ReproducirMusicaSafezoneAleatoria() => ReproducirAudio(ObtenerLista("safeZone"));
 
     public void DetenerTodaLaMusica()
     {
-        if (audioSource != null)
+        if (manager == null)
         {
-            audioSource.Stop();
+            Debug.LogWarning("[MusicaFondo] AudioManager no encontrado.");
+            return;
         }
-    }
 
-    private void ReproducirClipAleatorio(AudioClip[] lista)
-    {
-        if (audioSource == null || lista == null || lista.Length == 0) return;
+        audio[][] listas = { manager.musica, manager.musicaMuerte, manager.musicaMenu, manager.safeZone };
 
-        int index = Random.Range(0, lista.Length);
-        audioSource.clip = lista[index];
-        audioSource.Play();
-    }
+        foreach (var lista in listas)
+        {
+            if (lista == null) continue;
+            foreach (var pista in lista)
+                pista.source.Stop();
+        }
 
-    public void ReproducirMusicaAleatoria()
-    {
-        ReproducirClipAleatorio(musicaJuego);
-    }
-
-    public void ReproducirMusicaMuerteAleatoria()
-    {
-        ReproducirClipAleatorio(musicaMuerte);
-    }
-
-    public void ReproducirMusicaMenuAleatoria()
-    {
-        ReproducirClipAleatorio(musicaMenu);
-    }
-
-    public void ReproducirMusicaSafezoneAleatoria()
-    {
-        ReproducirClipAleatorio(musicaSafeZone);
+        musicaActual = null;
+        sourceActual = null;
+        indiceAnterior = -1;
     }
 }
+

@@ -5,22 +5,35 @@ using UnityEngine.UI;
 public class ImagenDaño
 {
     public Image imagen;
-    [Range(0f, 1f)] public float alfaMaximo = 0.8f; // Alfa máximo que puede alcanzar esta imagen
-    [Range(0f, 1f)] public float umbralVida = 0.75f; // Vida proporcional para empezar a activarse (0 a 1)
-    [Range(0.1f, 10f)] public float duracionTransicion = 1f;
+    [Range(0f, 1f)] public float alfaMaximo = 1f;
+    [Range(0f, 1f)] public float umbralVida = 0.75f;
+    [Range(0.1f, 10f)] public float duracionTransicion = .1f;
 }
 
 public class DañoVisual : MonoBehaviour
 {
-    [Header("Referencia a estadísticas del jugador")]
     public EstadisticasJugador stats;
-
-    [Header("Imágenes de efecto de daño")]
     public ImagenDaño[] imagenesDaño;
+
+    private int vidaAnterior;
+
+    private void Awake()
+    {
+        if (stats == null)
+        {
+            stats = FindObjectOfType<EstadisticasJugador>();
+        }
+
+        // Cargar imágenes desde un manager
+        Image[] imgs = UIEffectsManager.instance.GetImagenesDaño();
+        for (int i = 0; i < imagenesDaño.Length && i < imgs.Length; i++)
+            imagenesDaño[i].imagen = imgs[i];
+    }
 
     void Start()
     {
-        // Inicializar todas las imágenes con alfa 0
+        vidaAnterior = stats.vidaActual;
+
         foreach (var ic in imagenesDaño)
         {
             if (ic.imagen != null)
@@ -34,45 +47,46 @@ public class DañoVisual : MonoBehaviour
 
     void Update()
     {
-        // Actualizar visual cada frame
-        UpdateDañoVisual();
+        // Solo actualiza si la vida cambió
+        if (stats.vidaActual != vidaAnterior)
+        {
+            vidaAnterior = stats.vidaActual;
+            UpdateDañoVisual();
+        }
     }
 
-    // Método público que se puede llamar desde EstadisticasJugador
     public void UpdateDañoVisual()
     {
-        if (stats == null) return;
-
         float vidaProporcional = (float)stats.vidaActual / stats.vidaMax;
 
         foreach (var ic in imagenesDaño)
         {
             if (ic.imagen == null) continue;
 
+            float alfaObjetivo = 0f;
+
             if (vidaProporcional <= ic.umbralVida)
             {
                 float factor = (ic.umbralVida - vidaProporcional) / ic.umbralVida;
-                float alfaObjetivo = Mathf.Clamp01(factor * ic.alfaMaximo);
+                alfaObjetivo = Mathf.Clamp01(factor * ic.alfaMaximo);
+            }
 
-                // Aplicar transición suave con LeanTween
-                LeanTween.cancel(ic.imagen.gameObject);
-                Color colorActual = ic.imagen.color;
-                LeanTween.value(ic.imagen.gameObject, colorActual.a, alfaObjetivo, ic.duracionTransicion)
-                    .setOnUpdate((float val) =>
-                    {
-                        Color c = ic.imagen.color;
-                        c.a = val;
-                        ic.imagen.color = c;
-                    });
-            }
-            else
+            LeanTween.cancel(ic.imagen.gameObject);
+
+            Color colorActual = ic.imagen.color;
+
+            LeanTween.value(
+                ic.imagen.gameObject,
+                colorActual.a,
+                alfaObjetivo,
+                ic.duracionTransicion
+            )
+            .setOnUpdate((float val) =>
             {
-                // Mantener alfa 0 si la vida está por encima del umbral
-                LeanTween.cancel(ic.imagen.gameObject);
                 Color c = ic.imagen.color;
-                c.a = 0f;
+                c.a = val;
                 ic.imagen.color = c;
-            }
+            });
         }
     }
 }

@@ -44,7 +44,7 @@ Light:
   serializedVersion: 11
   m_Type: 6
   m_Color: {r: 0.6650944, g: 0.7320755, b: 1, a: 1}
-  m_Intensity: 19.901701
+  m_Intensity: 22.828098
   m_Range: 4.6772733
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -875,7 +875,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 745113791960360443}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 1
@@ -1257,6 +1257,7 @@ GameObject:
   - component: {fileID: 5749223022548547534}
   - component: {fileID: 3105910216121807378}
   - component: {fileID: 5263209608638867727}
+  - component: {fileID: 4209130661021103528}
   m_Layer: 0
   m_Name: muro_comp
   m_TagString: Untagged
@@ -1335,6 +1336,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4209130661021103528
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1203899616429586575}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1902095478749890733, guid: c1edf6fff9a7abf4fbd48eadc5b6587a, type: 3}
 --- !u!1 &1281487806904750456
 GameObject:
   m_ObjectHideFlags: 0
@@ -2702,6 +2725,7 @@ GameObject:
   - component: {fileID: 6904886901779836695}
   - component: {fileID: 7555552684033982189}
   - component: {fileID: 3359479466350716621}
+  - component: {fileID: 6929094497450244356}
   m_Layer: 0
   m_Name: panel
   m_TagString: Untagged
@@ -2814,8 +2838,21 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.01, y: 0.03, z: 0.01}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.01, y: 0.03, z: 0.02}
+  m_Center: {x: 0, y: 0, z: -0.01}
+--- !u!114 &6929094497450244356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023090952341973977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11c798d11e64c6248a2dbea16208fe53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MostrarBoton
+  teclaInteraccion: 101
 --- !u!1 &2123374794679118213
 GameObject:
   m_ObjectHideFlags: 0
@@ -3503,6 +3540,7 @@ GameObject:
   - component: {fileID: 8722017969800235550}
   - component: {fileID: 2151007736433135554}
   - component: {fileID: 9207943147895854303}
+  - component: {fileID: 1284597753951097324}
   m_Layer: 0
   m_Name: muro_comp
   m_TagString: Untagged
@@ -3581,6 +3619,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1284597753951097324
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2771576977332045151}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1902095478749890733, guid: c1edf6fff9a7abf4fbd48eadc5b6587a, type: 3}
 --- !u!1 &2772916225593391012
 GameObject:
   m_ObjectHideFlags: 0
@@ -3727,6 +3787,7 @@ GameObject:
   - component: {fileID: 8716073875284803231}
   - component: {fileID: 2028458218406755139}
   - component: {fileID: 9094541857861328990}
+  - component: {fileID: 684487134068493977}
   m_Layer: 0
   m_Name: muro_comp
   m_TagString: Untagged
@@ -3805,6 +3866,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &684487134068493977
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2849086075545776606}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1902095478749890733, guid: c1edf6fff9a7abf4fbd48eadc5b6587a, type: 3}
 --- !u!1 &2994470791712436947
 GameObject:
   m_ObjectHideFlags: 0
@@ -4433,7 +4516,7 @@ Transform:
   m_GameObject: {fileID: 4172123199380010569}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.021199998, y: 0.02441, z: -0.0014}
+  m_LocalPosition: {x: 0.0217, y: 0.02441, z: -0.0014}
   m_LocalScale: {x: 1, y: 0.66211, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4511,6 +4594,7 @@ GameObject:
   - component: {fileID: 2253047398567602890}
   - component: {fileID: 8905676578266017558}
   - component: {fileID: 1839601751954174987}
+  - component: {fileID: 2394650258093833730}
   m_Layer: 0
   m_Name: muro_comp
   m_TagString: Untagged
@@ -4589,6 +4673,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2394650258093833730
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4627489409426400651}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1902095478749890733, guid: c1edf6fff9a7abf4fbd48eadc5b6587a, type: 3}
 --- !u!1 &4702583459327590868
 GameObject:
   m_ObjectHideFlags: 0
@@ -5379,6 +5485,7 @@ GameObject:
   - component: {fileID: 1107374538605736467}
   - component: {fileID: 2460002690838434861}
   - component: {fileID: 625825798880357325}
+  - component: {fileID: 3416656751050785094}
   m_Layer: 0
   m_Name: panel
   m_TagString: Untagged
@@ -5491,8 +5598,21 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.01, y: 0.03, z: 0.01}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.01, y: 0.03, z: 0.02}
+  m_Center: {x: 0, y: 0, z: -0.01}
+--- !u!114 &3416656751050785094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5520937929697654493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11c798d11e64c6248a2dbea16208fe53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MostrarBoton
+  teclaInteraccion: 101
 --- !u!1 &5875410123544592615
 GameObject:
   m_ObjectHideFlags: 0
@@ -8305,7 +8425,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3455050864382654510
 Transform:
   m_ObjectHideFlags: 0
@@ -8778,6 +8898,7 @@ GameObject:
   - component: {fileID: 4151665229285855171}
   - component: {fileID: 7368907369616918216}
   - component: {fileID: 3997364219160392361}
+  - component: {fileID: 8160378259764230053}
   m_Layer: 0
   m_Name: panel
   m_TagString: Untagged
@@ -8890,8 +9011,21 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.01, y: 0.03, z: 0.01}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.01, y: 0.03, z: 0.02}
+  m_Center: {x: 0, y: 0, z: -0.01}
+--- !u!114 &8160378259764230053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8817429091408890637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11c798d11e64c6248a2dbea16208fe53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MostrarBoton
+  teclaInteraccion: 101
 --- !u!1 &8867080542758399516
 GameObject:
   m_ObjectHideFlags: 0
@@ -9017,6 +9151,7 @@ GameObject:
   - component: {fileID: 4063038120529066818}
   - component: {fileID: 1073150590802303647}
   - component: {fileID: 7886251573260924616}
+  - component: {fileID: 276361800610790426}
   m_Layer: 0
   m_Name: panel
   m_TagString: Untagged
@@ -9129,8 +9264,21 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.01, y: 0.03, z: 0.01}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.01, y: 0.03, z: 0.02}
+  m_Center: {x: 0, y: 0, z: -0.01}
+--- !u!114 &276361800610790426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8908875607336730508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11c798d11e64c6248a2dbea16208fe53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MostrarBoton
+  teclaInteraccion: 101
 --- !u!1 &8944241144550232133
 GameObject:
   m_ObjectHideFlags: 0

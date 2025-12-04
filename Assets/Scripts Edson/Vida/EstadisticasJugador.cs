@@ -17,7 +17,15 @@ public class EstadisticasJugador : MonoBehaviour
 
     private void Start()
     {
-        // Sincronizar con munición persistente al inicio
+        // Buscar DañoVisual si la referencia está vacía
+        if (dañoVisual == null)
+            dañoVisual = FindObjectOfType<DañoVisual>(true); // Busca incluso si está desactivado
+
+        // Buscar ParpadeoDaño si la referencia está vacía
+        if (parpadeoDaño == null)
+            parpadeoDaño = FindObjectOfType<ParpadeoDaño>(true);
+
+        // Sincronizar munición persistente
         if (MunicionPersistente.Instance != null)
             municionActual = MunicionPersistente.Instance.municionActual;
 
