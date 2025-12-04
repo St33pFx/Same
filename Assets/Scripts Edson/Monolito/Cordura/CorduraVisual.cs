@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
@@ -9,8 +9,8 @@ public class ImagenCordura
     [Range(0.1f, 10f)] public float duracionTransicion = 2f;
     [Range(0f, 15f)] public float tiempoActivacion = 1f;
 
-    [HideInInspector] public float temporizadorActual = 0f;
-    [HideInInspector] public bool activada = false;
+    [HideInInspector] public float temporizadorActual;
+    [HideInInspector] public bool activada;
 }
 
 public class CorduraVisual : MonoBehaviour
@@ -18,7 +18,7 @@ public class CorduraVisual : MonoBehaviour
     [Header("Referencia a Cordura")]
     public Cordura cordura;
 
-    [Header("Vignette")]
+    [Header("Imágenes de Cordura")]
     public ImagenCordura[] imagenesCordura;
 
     [Header("Tiempo de desvanecimiento al curarse")]
@@ -27,7 +27,19 @@ public class CorduraVisual : MonoBehaviour
     [HideInInspector] public bool jugadorDentroMonolito = false;
     private bool temporizadoresIniciados = false;
 
-    void Start()
+    private void Awake()
+    {
+        // Obtener imágenes desde UIEffectsManager si no están asignadas
+        if ((imagenesCordura == null || imagenesCordura.Length == 0) && UIEffectsManager.instance != null)
+        {
+            Image[] imgs = UIEffectsManager.instance.GetImagenesCordura();
+            imagenesCordura = new ImagenCordura[imgs.Length];
+            for (int i = 0; i < imgs.Length; i++)
+                imagenesCordura[i] = new ImagenCordura { imagen = imgs[i] };
+        }
+    }
+
+    private void Start()
     {
         foreach (var ic in imagenesCordura)
         {
@@ -43,11 +55,11 @@ public class CorduraVisual : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
         if (cordura == null) return;
 
-        // Activar temporizadores solo cuando cordura = 0
+        // 1️⃣ Iniciar temporizadores solo cuando cordura llega a 0
         if (cordura.corduraActual <= 0f && !temporizadoresIniciados)
         {
             temporizadoresIniciados = true;
@@ -58,7 +70,7 @@ public class CorduraVisual : MonoBehaviour
             }
         }
 
-        // Si cordura > 0, detener temporizadores y desvanecer im�genes
+        // 2️⃣ Si la cordura sube > 0, detener temporizadores y desvanecer imágenes
         if (cordura.corduraActual > 0f && temporizadoresIniciados)
         {
             temporizadoresIniciados = false;
@@ -70,7 +82,7 @@ public class CorduraVisual : MonoBehaviour
             }
         }
 
-        // Ejecutar temporizadores escalonados solo si el jugador est� dentro del monolito
+        // 3️⃣ Ejecutar temporizadores escalonados solo si el jugador está dentro del monolito
         if (temporizadoresIniciados && jugadorDentroMonolito)
         {
             foreach (var ic in imagenesCordura)

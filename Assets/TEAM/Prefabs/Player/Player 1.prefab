@@ -19,9 +19,7 @@ GameObject:
   - component: {fileID: 4300886972803516566}
   - component: {fileID: 8201148666016162286}
   - component: {fileID: 8194922318303144209}
-  - component: {fileID: 7115557880295969856}
   - component: {fileID: 7170012926327712611}
-  - component: {fileID: 9174964678215351834}
   - component: {fileID: 8357901444729425970}
   m_Layer: 0
   m_Name: Player 1
@@ -40,7 +38,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5, y: 2.14, z: -8.37}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.95, y: 0.95, z: 0.95}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4231751588535057080}
@@ -250,34 +248,11 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1895117607434151456, guid: 9da20bf4e1d22c04a9cc41a19e106cd1, type: 3}
   firePoint: {fileID: 9215487364930108868}
   playerCamera: {fileID: 1852543349863543428}
+  impactVFX: {fileID: 0}
+  cameraRecoil: {fileID: 0}
+  weaponRecoil: {fileID: 0}
   velocidadBala: 40
   cadencia: 0.1
---- !u!114 &7115557880295969856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1711242236113571958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16c033b1b8bcad941b417179a477f381, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: "Assembly-CSharp::Da\xF1oVisual"
-  stats: {fileID: 4300886972803516566}
-  "imagenesDa\xF1o":
-  - imagen: {fileID: 0}
-    alfaMaximo: 1
-    umbralVida: 0.806
-    duracionTransicion: 0
-  - imagen: {fileID: 0}
-    alfaMaximo: 1
-    umbralVida: 0.403
-    duracionTransicion: 0
-  - imagen: {fileID: 0}
-    alfaMaximo: 1
-    umbralVida: 0.208
-    duracionTransicion: 0
 --- !u!114 &7170012926327712611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,22 +268,6 @@ MonoBehaviour:
   prefabCuchillo: {fileID: 6851044275806774155, guid: f7bec4480e808844aad47e3cd4492aec, type: 3}
   puntoDeInstancia: {fileID: 3498221992695763335}
   nombreAnimacion: estocada
---- !u!114 &9174964678215351834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1711242236113571958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f32eb8b5cd16d13459458db331e4a12e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: "Assembly-CSharp::ParpadeoDa\xF1o"
-  animator: {fileID: 0}
-  triggerNombre: Parpadeo
-  stats: {fileID: 4300886972803516566}
-  vidaCritica: 20
 --- !u!114 &8357901444729425970
 MonoBehaviour:
   m_ObjectHideFlags: 0

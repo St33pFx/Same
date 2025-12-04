@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3773578572601417221}
   - component: {fileID: 5179488899792133999}
   - component: {fileID: 6347786293738178418}
-  - component: {fileID: -3952149362526912535}
+  - component: {fileID: 6189725335696100514}
   m_Layer: 0
   m_Name: proyectil prueba
   m_TagString: Untagged
@@ -113,7 +113,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.50000006
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &3773578572601417221
 SphereCollider:
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProyectilVida
   tiempo: 2
---- !u!114 &-3952149362526912535
+--- !u!114 &6189725335696100514
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5761599123757293842}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 272d0e085ee183b4aa76ad6e5472bc8a, type: 3}
+  m_Script: {fileID: 11500000, guid: 2487393b52b47d84eb15f57fa8fced6f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: "Assembly-CSharp::ZonaDa\xF1o"
+  m_EditorClassIdentifier: Assembly-CSharp::ProyectilEnemigo
   "da\xF1o": 20

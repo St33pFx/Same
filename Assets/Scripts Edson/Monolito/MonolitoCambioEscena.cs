@@ -1,36 +1,55 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Collections;
 
 public class MonolitoCambioEscena : MonoBehaviour
 {
     [Header("Nombre de la escena a cargar")]
-    public string sceneName; // Nombre de la escena a cargar
+    public string sceneName;
 
     [Header("Duración del fade (segundos)")]
-    public float fadeDuration = 1.5f; // Tiempo que tarda el fade antes del cambio
+    public float fadeDuration = 1.5f;
 
     [Header("Imagen para el fade in")]
-    public Image fadeImage; // Imagen del UI con alfa inicial en 0
+    public Image fadeImage;
 
     private bool playerInTrigger = false;
     private bool sceneChangeStarted = false;
     private GameObject player;
 
-    void OnTriggerEnter(Collider other)
+    private void Awake()
     {
-        // Detectar si el jugador entra al área
-        if (other.CompareTag("Player"))
+        // Buscar automáticamente la imagen con el tag "Fade" si no está asignada
+        if (fadeImage == null)
         {
-            playerInTrigger = true;
-            player = other.gameObject; // Guardar referencia al jugador
+            GameObject fadeObj = GameObject.FindGameObjectWithTag("Fade");
+            if (fadeObj != null)
+                fadeImage = fadeObj.GetComponent<Image>();
+            else
+                Debug.LogWarning("No se encontró un objeto con tag 'Fade' en la escena.");
+        }
+
+        // Inicializar alfa en 0 y activar la imagen
+        if (fadeImage != null)
+        {
+            fadeImage.gameObject.SetActive(true);
+            Color c = fadeImage.color;
+            c.a = 0f;
+            fadeImage.color = c;
         }
     }
 
-    void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        // Detectar si el jugador sale del área
+        if (other.CompareTag("Player"))
+        {
+            playerInTrigger = true;
+            player = other.gameObject;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
         if (other.CompareTag("Player"))
         {
             playerInTrigger = false;
@@ -38,53 +57,50 @@ public class MonolitoCambioEscena : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
-        // Iniciar el cambio de escena con fade al presionar E
         if (playerInTrigger && Input.GetKeyDown(KeyCode.E) && !sceneChangeStarted)
         {
             if (!string.IsNullOrEmpty(sceneName))
             {
                 sceneChangeStarted = true;
 
-                // Desactivar el PlayerController si existe
+                // Desactivar PlayerController y Shooter si existen
                 if (player != null)
                 {
-                    MonoBehaviour playerController = player.GetComponent<MonoBehaviour>();
+                    var playerController = player.GetComponent<MonoBehaviour>();
+                    var shooter = player.GetComponent<MonoBehaviour>();
+
                     foreach (var comp in player.GetComponents<MonoBehaviour>())
                     {
-                        if (comp.GetType().Name == "PlayerController")
+                        if (comp.GetType().Name == "PlayerController" || comp.GetType().Name == "Shooter")
                         {
                             comp.enabled = false;
-                            Debug.Log("PlayerController desactivado antes del cambio de escena.");
-                            break;
                         }
                     }
                 }
 
-                StartCoroutine(FadeAndChangeScene());
+                // Ejecutar fade completo con LeanTween y TimeScale ignorado
+                if (fadeImage != null)
+                {
+                    LeanTween.value(fadeImage.gameObject, fadeImage.color.a, 1f, fadeDuration)
+                        .setIgnoreTimeScale(true) // Permite que funcione aunque Time.timeScale = 0
+                        .setOnUpdate((float val) =>
+                        {
+                            Color c = fadeImage.color;
+                            c.a = val;
+                            fadeImage.color = c;
+                        })
+                        .setOnComplete(() =>
+                        {
+                            SceneManager.LoadScene(sceneName);
+                        });
+                }
+                else
+                {
+                    SceneManager.LoadScene(sceneName);
+                }
             }
         }
-    }
-
-    IEnumerator FadeAndChangeScene()
-    {
-        if (fadeImage != null)
-        {
-            Color color = fadeImage.color;
-            float tiempo = 0f;
-
-            // Aumentar el alfa suavemente hasta 1
-            while (tiempo < fadeDuration)
-            {
-                tiempo += Time.deltaTime;
-                color.a = Mathf.Lerp(0f, 1f, tiempo / fadeDuration);
-                fadeImage.color = color;
-                yield return null;
-            }
-        }
-
-        // Cambiar la escena justo al terminar el fade
-        SceneManager.LoadScene(sceneName);
     }
 }

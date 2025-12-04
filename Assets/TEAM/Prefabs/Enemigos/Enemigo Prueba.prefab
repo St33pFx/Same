@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 8304433461837313847}
   - component: {fileID: 4936777604166650492}
   - component: {fileID: 3585122087858955259}
+  - component: {fileID: 4313567275255928882}
+  - component: {fileID: 2767586827827948026}
   m_Layer: 0
   m_Name: Enemigo Prueba
   m_TagString: Enemigo
@@ -171,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c24a8c3310079a46be747ac6def128e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VidaEnemigo
-  vida: 30
+  vida: 20
   prefabDrop: {fileID: 6493614346111946527, guid: 451e4abaf58806347b23138326402e25, type: 3}
   probabilidadDrop: 1
 --- !u!114 &4936777604166650492
@@ -187,6 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: "Assembly-CSharp::Da\xF1oTrigger"
   "da\xF1o": 20
+  triggerCollider: {fileID: 8697779782651773852}
 --- !u!114 &3585122087858955259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,3 +202,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5393dcab8e27a7546a8414ceac7ae237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovimientoEnemigo
+--- !u!114 &4313567275255928882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2165806775847412466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea2c4fe9ed72884f9ac6dd4b640b864, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MonolitoCordura
+  cordura: {fileID: 0}
+  visualCordura: {fileID: 0}
+  perdidaPorSegundo: 50
+--- !u!136 &2767586827827948026
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2165806775847412466}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}

@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 3759720172892179987}
   - component: {fileID: 3084113689000202969}
   - component: {fileID: 1340655554246203401}
+  - component: {fileID: 1342411568101178656}
   m_Layer: 5
   m_Name: HUD (Canvas)
   m_TagString: Untagged
@@ -110,7 +111,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7924126350412453064}
   - {fileID: 2844490853543320120}
   - {fileID: 193682588723952118}
   - {fileID: 8151845721969318740}
@@ -202,7 +202,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Pausa
   objetoMenuPausa: {fileID: 2234209173414595471}
   pausa: 0
-  scriptMovimientoCamara: {fileID: 0}
 --- !u!114 &3759720172892179987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,6 +258,27 @@ MonoBehaviour:
   notasPosFinal: {x: 0, y: 0, z: 0}
   duracion: 1
   easing: 4
+--- !u!114 &1342411568101178656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850508913555622390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f50d244df44954945898e74b5bc1cd27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIEffectsManager
+  "imagenesDa\xF1o":
+  - {fileID: 2534886020091402953}
+  - {fileID: 9044142590033425915}
+  - {fileID: 498029417563615158}
+  imagenesCordura:
+  - {fileID: 6295598198539945914}
+  - {fileID: 5207028814017499050}
+  - {fileID: 7121810506414187133}
+  - {fileID: 4535854097095283722}
 --- !u!1 &900069557265411135
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,81 +633,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1 &1214635503999747465
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6484184907740046105}
-  - component: {fileID: 7592674101159141297}
-  - component: {fileID: 4377083530649663842}
-  m_Layer: 5
-  m_Name: Pantalla Negra
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &6484184907740046105
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1214635503999747465}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7924126350412453064}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &7592674101159141297
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1214635503999747465}
-  m_CullTransparentMesh: 1
---- !u!114 &4377083530649663842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1214635503999747465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1636521726911844588
 GameObject:
   m_ObjectHideFlags: 0
@@ -1416,7 +1361,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -650, y: 442}
+  m_AnchoredPosition: {x: -661.1, y: 438.3}
   m_SizeDelta: {x: 91.4634, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4070686919224122118
@@ -1474,8 +1419,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
-  m_fontSizeBase: 72
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1587,6 +1532,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CambioDeEscena
   escena: Menu
+  panelImagen: {fileID: 0}
+  duracionFade: 1
 --- !u!1 &3046195455907227574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1869,6 +1816,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CambioDeEscena
   escena: Menu
+  panelImagen: {fileID: 0}
+  duracionFade: 1
 --- !u!1 &3677363056249489351
 GameObject:
   m_ObjectHideFlags: 0
@@ -2500,6 +2449,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CambioDeEscena
   escena: Menu
+  panelImagen: {fileID: 0}
+  duracionFade: 1
 --- !u!1 &4894296805294567727
 GameObject:
   m_ObjectHideFlags: 0
@@ -2983,57 +2934,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &5887979430648684269
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7924126350412453064}
-  - component: {fileID: 7782446289282191025}
-  m_Layer: 5
-  m_Name: UI Fade
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &7924126350412453064
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5887979430648684269}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6484184907740046105}
-  m_Father: {fileID: 1102720122469564212}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7782446289282191025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5887979430648684269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f2eeeb182616e74fa6af816c04388ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FadeOutInicio
-  imagenFade: {fileID: 4377083530649663842}
-  duracion: 1.5
 --- !u!1 &5909912150083468335
 GameObject:
   m_ObjectHideFlags: 0
@@ -3564,11 +3464,11 @@ MonoBehaviour:
     duracionTransicion: 0
   - imagen: {fileID: 9044142590033425915}
     alfaMaximo: 1
-    umbralVida: 0.4
+    umbralVida: 0.6
     duracionTransicion: 0
   - imagen: {fileID: 498029417563615158}
     alfaMaximo: 1
-    umbralVida: 0.2
+    umbralVida: 0.4
     duracionTransicion: 0
 --- !u!114 &8960557382290314015
 MonoBehaviour:
@@ -3870,6 +3770,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CambioDeEscena
   escena: Menu
+  panelImagen: {fileID: 0}
+  duracionFade: 2
 --- !u!1 &7098158641627439336
 GameObject:
   m_ObjectHideFlags: 0
@@ -4043,6 +3945,7 @@ MonoBehaviour:
   - Toca chambear
   - Ya se me acabaron las ideas xd
   textoNotaUI: {fileID: 3388185431914652545}
+  simboloBloqueado: ?????
 --- !u!1 &7443618694296720171
 GameObject:
   m_ObjectHideFlags: 0
@@ -4285,26 +4188,26 @@ MonoBehaviour:
   imagenesCordura:
   - imagen: {fileID: 6295598198539945914}
     alfaObjetivo: 0.6
-    duracionTransicion: 10
-    tiempoActivacion: 4
+    duracionTransicion: 8
+    tiempoActivacion: 2
     temporizadorActual: 0
     activada: 0
   - imagen: {fileID: 5207028814017499050}
     alfaObjetivo: 1
-    duracionTransicion: 10
-    tiempoActivacion: 6
+    duracionTransicion: 8
+    tiempoActivacion: 3
     temporizadorActual: 0
     activada: 0
   - imagen: {fileID: 7121810506414187133}
     alfaObjetivo: 1
-    duracionTransicion: 10
-    tiempoActivacion: 6
+    duracionTransicion: 8
+    tiempoActivacion: 3
     temporizadorActual: 0
     activada: 0
   - imagen: {fileID: 4535854097095283722}
     alfaObjetivo: 1
     duracionTransicion: 10
-    tiempoActivacion: 20
+    tiempoActivacion: 5
     temporizadorActual: 0
     activada: 0
   tiempoDesvanecimiento: 3

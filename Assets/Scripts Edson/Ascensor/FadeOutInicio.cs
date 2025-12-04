@@ -1,11 +1,11 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
 public class FadeOutInicio : MonoBehaviour
 {
-    public Image imagenFade; // Imagen a desvanecer
-    public float duracion = 1.5f; // Tiempo del fade en segundos
+    public Image imagenFade;      // Imagen que se va a desvanecer
+    public float duracion = 1.5f; // Duración del fade
 
     private void Start()
     {
@@ -26,6 +26,12 @@ public class FadeOutInicio : MonoBehaviour
             yield return null;
         }
 
+        // Alpha final
         imagenFade.color = new Color(colorInicial.r, colorInicial.g, colorInicial.b, 0f);
+
+        // Desactiva el objeto que contiene la imagen
+        imagenFade.gameObject.SetActive(false);
+
+
     }
 }

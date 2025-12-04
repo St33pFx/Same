@@ -1,15 +1,26 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CuracionVida : MonoBehaviour
 {
-    [Header("Referencia a estad�sticas del jugador")]
+    [Header("Referencia a estadísticas del jugador")]
     public EstadisticasJugador stats;
 
-    [Header("Configuraci�n")]
+    [Header("Configuración")]
     public KeyCode botonAPresionar = KeyCode.E;
     public int cantidadCuracion = 50;
 
     private bool jugadorDentro = false;
+
+    private void Awake()
+    {
+        // Buscar automáticamente EstadisticasJugador si no está asignado
+        if (stats == null)
+        {
+            stats = FindObjectOfType<EstadisticasJugador>();
+            if (stats == null)
+                Debug.LogError("❌ No se encontró 'EstadisticasJugador' en la escena.");
+        }
+    }
 
     private void Update()
     {
@@ -20,7 +31,7 @@ public class CuracionVida : MonoBehaviour
                 stats.Curarse(cantidadCuracion);
             }
 
-            // Destruir el objeto curativo despu�s de usarlo
+            // Destruir el objeto curativo después de usarlo
             Destroy(gameObject);
         }
     }

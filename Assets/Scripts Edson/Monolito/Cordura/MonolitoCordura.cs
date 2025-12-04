@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MonolitoCordura : MonoBehaviour
 {
@@ -8,14 +8,35 @@ public class MonolitoCordura : MonoBehaviour
     [Header("Referencia a CorduraVisual")]
     public CorduraVisual visualCordura;
 
-    [Header("Configuraci�n")]
+    [Header("Configuración")]
     public float perdidaPorSegundo = 5f;
 
-    [HideInInspector] public bool jugadorDentro = false;
+    private void Awake()
+    {
+        // Buscar Cordura automáticamente si no está asignada
+        if (cordura == null)
+            cordura = FindObjectOfType<Cordura>();
+
+        // Buscar CorduraVisual automáticamente si no está asignada
+        if (visualCordura == null)
+        {
+            visualCordura = FindObjectOfType<CorduraVisual>();
+            if (visualCordura == null)
+            {
+                Debug.LogWarning("No se encontró CorduraVisual en la escena. Las imágenes no se mostrarán.");
+            }
+            else
+            {
+                visualCordura.cordura = cordura;
+            }
+        }
+    }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player") && cordura != null)
+        if (!other.CompareTag("Player")) return;
+
+        if (cordura != null)
         {
             cordura.PerderCordura(perdidaPorSegundo * Time.deltaTime);
         }
@@ -23,21 +44,17 @@ public class MonolitoCordura : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            jugadorDentro = true;
-            if (visualCordura != null)
-                visualCordura.JugadorDentroMonolito(true);
-        }
+        if (!other.CompareTag("Player")) return;
+
+        if (visualCordura != null)
+            visualCordura.JugadorDentroMonolito(true);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            jugadorDentro = false;
-            if (visualCordura != null)
-                visualCordura.JugadorDentroMonolito(false);
-        }
+        if (!other.CompareTag("Player")) return;
+
+        if (visualCordura != null)
+            visualCordura.JugadorDentroMonolito(false);
     }
 }
