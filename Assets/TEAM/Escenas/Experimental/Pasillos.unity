@@ -455,6 +455,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: piso prefab 1
       objectReference: {fileID: 0}
+    - target: {fileID: 888105274097620427, guid: 3539373f24c5c6545af91142dd860c5a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0217
+      objectReference: {fileID: 0}
     - target: {fileID: 8579922940999612376, guid: 3539373f24c5c6545af91142dd860c5a, type: 3}
       propertyPath: m_IsActive
       value: 0
