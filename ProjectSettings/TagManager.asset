@@ -51,3 +51,9 @@ TagManager:
   m_RenderingLayers:
   - Default
   - muros
+  - LuzVerde
+  - Pasillo
+  - Suelo
+  - Paredes
+  - Techo
+  - ASSETR
