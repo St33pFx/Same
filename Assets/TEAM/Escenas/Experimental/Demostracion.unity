@@ -23812,32 +23812,33 @@ MonoBehaviour:
   prefabs:
   - nameTag: tarjeat de acceso
     prefab: {fileID: 346773712604477156, guid: 58fa829b97ad34e4cb1d289079e409c0, type: 3}
-    selectionWeight: 1
+    probabilidad: 0.5
     minCount: 1
-    maxCount: 2
+    maxCount: 1
     incluirGeneracionDentroDeOtrosObjetos: 0
     tieneNavMesh: 0
     spawnedCount: 0
   spawnAreas:
   - pivot: {fileID: 2082474377}
     boxSize: {x: 7.38, y: 2.61, z: 15.22}
-    usePivotRotation: 0
+    usarpivoteRotacion: 1
     permitirGeneracionDentroDeLayers: 0
-    maxAttemptsPerSpawn: 5
-  maxGlobalSpawn: 50
-  allowedInsideLayers:
+    maxIntentosPorSpawn: 40
+  maxSpawnGlobal: 50
+  layerPermitidasEstarAdentro:
     serializedVersion: 2
     m_Bits: 4294967295
-  ignoredLayers:
+  layersIgnoradas:
     serializedVersion: 2
     m_Bits: 0
-  preferPlaceOnSurface: 1
-  raycastStartHeight: 1
-  verticalOffset: 0.02
-  parentForSpawned: {fileID: 893422396}
+  colocarPrefabsSobreSuperficie: 1
+  alturaDeInicioRaycast: 6
+  offsetVertical: 0.02
+  EmptyComoCarpeta: {fileID: 893422396}
   mostrarPreview: 1
   cantidadPreview: 40
   mostrarPosicionesGeneradas: 1
+  generarAlIniciar: 1
 --- !u!1001 &2024502661
 PrefabInstance:
   m_ObjectHideFlags: 0

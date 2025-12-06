@@ -4,14 +4,12 @@ using UnityEngine.AI;
 
 public class AreaSpawnerUniversal : MonoBehaviour
 {
-    // ===================== DATA =====================
-
     [System.Serializable]
     public class PrefabEntry
     {
         public string nameTag;
         public GameObject prefab;
-        [Range(0f, 1f)] public float selectionWeight = 0.5f;
+        [Range(0f, 1f)] public float probabilidad = 0.5f;
         public float minCount = 0;
         public float maxCount = 5;
         public bool incluirGeneracionDentroDeOtrosObjetos = false;
@@ -24,9 +22,9 @@ public class AreaSpawnerUniversal : MonoBehaviour
     {
         public Transform pivot;
         public Vector3 boxSize = Vector3.one;
-        public bool usePivotRotation = true;
+        public bool usarpivoteRotacion = true;
         public bool permitirGeneracionDentroDeLayers = false;
-        public int maxAttemptsPerSpawn = 40;
+        public int maxIntentosPorSpawn = 40;
     }
 
     [Header("OBJETOS")]
@@ -36,18 +34,18 @@ public class AreaSpawnerUniversal : MonoBehaviour
     public List<SpawnArea> spawnAreas = new List<SpawnArea>();
 
     [Header("LÍMITE GLOBAL")]
-    public int maxGlobalSpawn = 50;
+    public int maxSpawnGlobal = 50;
 
     [Header("CAPAS")]
-    public LayerMask allowedInsideLayers = ~0;
-    public LayerMask ignoredLayers = 0;
+    public LayerMask layerPermitidasEstarAdentro = ~0;
+    public LayerMask layersIgnoradas = 0;
 
     [Header("SUELO")]
-    public bool preferPlaceOnSurface = true;
-    public float raycastStartHeight = 6f;
-    public float verticalOffset = 0.02f;
+    public bool colocarPrefabsSobreSuperficie = true;
+    public float alturaDeInicioRaycast = 6f;
+    public float offsetVertical = 0.02f;
 
-    public Transform parentForSpawned;
+    public Transform EmptyComoCarpeta;
 
     [Header("DEBUG / PREVIEW")]
     public bool mostrarPreview = true;
@@ -55,17 +53,27 @@ public class AreaSpawnerUniversal : MonoBehaviour
     public bool mostrarPosicionesGeneradas = true;
 
     private List<GameObject> spawned = new List<GameObject>();
-    private List<Vector3> previewPoints = new List<Vector3>();
+    private List<Vector3> puntosDePreview = new List<Vector3>();
 
+    [Header("INICIO AUTOMÁTICO")]
+    public bool generarAlIniciar = true;
 
-    // ===================== PUBLIC =====================
+    [ContextMenu("SPAWN GLOBAL")]
 
+    void Start()
+    {
+        if (generarAlIniciar)
+        {
+            Debug.Log("[Spawner] Generación automática al iniciar...");
+            SpawnGlobal();
+        }
+    }
     [ContextMenu("SPAWN GLOBAL")]
     public void SpawnGlobal()
     {
         if (prefabs.Count == 0 || spawnAreas.Count == 0)
         {
-            Debug.LogError("[Spawner] ❌ No hay Prefabs o SpawnAreas asignadas.");
+            Debug.LogError("[Spawner] No hay Prefabs o SpawnAreas asignadas.");
             return;
         }
 
@@ -74,39 +82,42 @@ public class AreaSpawnerUniversal : MonoBehaviour
             p.spawnedCount = 0;
 
         int totalSpawned = 0;
+        int intentosTotales = 0;
+        int maxIntentosTotales = maxSpawnGlobal * 20;
 
-        while (totalSpawned < maxGlobalSpawn)
+        while (totalSpawned < maxSpawnGlobal && intentosTotales < maxIntentosTotales)
         {
+            intentosTotales++;
+
             SpawnArea area = spawnAreas[Random.Range(0, spawnAreas.Count)];
             if (area == null || area.pivot == null)
                 continue;
 
             PrefabEntry entry = SelectPrefabByWeight(area);
             if (entry == null)
-            {
-                Debug.LogError("[Spawner] ❌ No se pudo seleccionar ningún prefab por peso.");
-                break;
-            }
+                continue;
 
             int maxAllowed = Mathf.RoundToInt(entry.maxCount);
             if (entry.spawnedCount >= maxAllowed)
                 continue;
 
-            bool success = TrySpawnOne(entry, area, true);
+            bool success = TrySpawnOne(entry, area, false);
+
             if (success)
             {
                 entry.spawnedCount++;
                 totalSpawned++;
             }
-            else
-            {
-                Debug.LogWarning($"[Spawner] ⚠ No se pudo generar {entry.nameTag}");
-                break;
-            }
         }
 
-        Debug.Log($"[Spawner] ✅ Total generado: {spawned.Count}");
+        if (totalSpawned < maxSpawnGlobal)
+        {
+            Debug.LogWarning($"[Spawner] Solo se generaron {totalSpawned} de {maxSpawnGlobal}. No quedaron posiciones válidas.");
+        }
+
+        Debug.Log($"[Spawner] Total generado: {spawned.Count}");
     }
+
 
     [ContextMenu("CLEAR")]
     public void ClearSpawned()
@@ -127,20 +138,18 @@ public class AreaSpawnerUniversal : MonoBehaviour
         spawned.Clear();
     }
 
-    // ===================== CORE =====================
-
     bool TrySpawnOne(PrefabEntry entry, SpawnArea area, bool logDebug)
     {
         if (entry == null || entry.prefab == null)
         {
-            Debug.LogError("[Spawner] ❌ PrefabEntry o Prefab NULL. Revisa el Inspector.");
+            Debug.LogError("[Spawner] PrefabEntry o Prefab NULL. Revisa el Inspector.");
             return false;
         }
 
         Bounds b = CalculatePrefabBounds(entry.prefab);
         Vector3 halfExtents = b.extents;
 
-        for (int i = 0; i < area.maxAttemptsPerSpawn; i++)
+        for (int i = 0; i < area.maxIntentosPorSpawn; i++)
         {
             Vector3 local = new Vector3(
                 Random.Range(-area.boxSize.x / 2, area.boxSize.x / 2),
@@ -148,11 +157,11 @@ public class AreaSpawnerUniversal : MonoBehaviour
                 Random.Range(-area.boxSize.z / 2, area.boxSize.z / 2)
             );
 
-            Vector3 candidate = area.usePivotRotation ?
+            Vector3 candidate = area.usarpivoteRotacion ?
                 area.pivot.TransformPoint(local) :
                 area.pivot.position + local;
 
-            // ---------- NAVMESH ----------
+            //---------- NAVMESH ----------
             if (entry.tieneNavMesh)
             {
                 if (!NavMesh.SamplePosition(candidate, out NavMeshHit nh, 3f, NavMesh.AllAreas))
@@ -160,15 +169,15 @@ public class AreaSpawnerUniversal : MonoBehaviour
 
                 candidate = nh.position;
             }
-            // ---------- SUELO ----------
-            else if (preferPlaceOnSurface)
+            //---------- SUELO ----------
+            else if (colocarPrefabsSobreSuperficie)
             {
-                if (Physics.Raycast(candidate + Vector3.up * raycastStartHeight,
+                if (Physics.Raycast(candidate + Vector3.up * alturaDeInicioRaycast,
                     Vector3.down, out RaycastHit hit,
-                    raycastStartHeight * 2f, ~ignoredLayers,
+                    alturaDeInicioRaycast * 2f, ~layersIgnoradas,
                     QueryTriggerInteraction.Ignore))
                 {
-                    candidate = hit.point + Vector3.up * (halfExtents.y + verticalOffset);
+                    candidate = hit.point + Vector3.up * (halfExtents.y + offsetVertical);
                 }
                 else if (!entry.incluirGeneracionDentroDeOtrosObjetos)
                 {
@@ -179,12 +188,12 @@ public class AreaSpawnerUniversal : MonoBehaviour
             if (entry.incluirGeneracionDentroDeOtrosObjetos && !area.permitirGeneracionDentroDeLayers)
                 continue;
 
-            // ---------- COLLISIONES ----------
+            //---------- COLLISIONES ----------
             Collider[] overlaps = Physics.OverlapBox(
                 candidate,
                 halfExtents * 0.9f,
                 Quaternion.identity,
-                ~ignoredLayers,
+                ~layersIgnoradas,
                 QueryTriggerInteraction.Ignore
             );
 
@@ -203,10 +212,10 @@ public class AreaSpawnerUniversal : MonoBehaviour
             if (blocked)
                 continue;
 
-            // ---------- INSTANTIAR ----------
-            GameObject go = Instantiate(entry.prefab, candidate, Quaternion.identity, parentForSpawned);
+            //---------- INSTANTIAR ----------
+            GameObject go = Instantiate(entry.prefab, candidate, Quaternion.identity, EmptyComoCarpeta);
             go.SetActive(true);
-            go.transform.localScale = Vector3.one;
+            go.transform.localScale = entry.prefab.transform.localScale;
             go.name += "_SPAWNED";
 
             spawned.Add(go);
@@ -235,7 +244,7 @@ public class AreaSpawnerUniversal : MonoBehaviour
             if (p.incluirGeneracionDentroDeOtrosObjetos && !area.permitirGeneracionDentroDeLayers)
                 continue;
 
-            total += Mathf.Max(0.01f, p.selectionWeight);
+            total += Mathf.Max(0.01f, p.probabilidad);
         }
 
         float r = Random.Range(0f, total);
@@ -248,7 +257,7 @@ public class AreaSpawnerUniversal : MonoBehaviour
             if (p.incluirGeneracionDentroDeOtrosObjetos && !area.permitirGeneracionDentroDeLayers)
                 continue;
 
-            acc += Mathf.Max(0.01f, p.selectionWeight);
+            acc += Mathf.Max(0.01f, p.probabilidad);
             if (r <= acc)
                 return p;
         }
@@ -277,7 +286,7 @@ public class AreaSpawnerUniversal : MonoBehaviour
 
     void GeneratePreview()
     {
-        previewPoints.Clear();
+        puntosDePreview.Clear();
         if (!mostrarPreview) return;
 
         for (int i = 0; i < cantidadPreview; i++)
@@ -291,15 +300,15 @@ public class AreaSpawnerUniversal : MonoBehaviour
                 Random.Range(-area.boxSize.z / 2, area.boxSize.z / 2)
             );
 
-            Vector3 point = area.usePivotRotation ?
+            Vector3 point = area.usarpivoteRotacion ?
                 area.pivot.TransformPoint(local) :
                 area.pivot.position + local;
 
-            if (Physics.Raycast(point + Vector3.up * raycastStartHeight,
+            if (Physics.Raycast(point + Vector3.up * alturaDeInicioRaycast,
                 Vector3.down, out RaycastHit hit,
-                raycastStartHeight * 2f))
+                alturaDeInicioRaycast * 2f))
             {
-                previewPoints.Add(hit.point);
+                puntosDePreview.Add(hit.point);
             }
         }
     }
@@ -311,7 +320,7 @@ public class AreaSpawnerUniversal : MonoBehaviour
         GeneratePreview();
 
         Gizmos.color = Color.yellow;
-        foreach (var p in previewPoints)
+        foreach (var p in puntosDePreview)
             Gizmos.DrawSphere(p, 0.2f);
 
         if (mostrarPosicionesGeneradas)
@@ -334,7 +343,7 @@ public class AreaSpawnerUniversal : MonoBehaviour
 
             Gizmos.color = area.permitirGeneracionDentroDeLayers ? Color.cyan : Color.green;
 
-            Matrix4x4 m = area.usePivotRotation ?
+            Matrix4x4 m = area.usarpivoteRotacion ?
                 Matrix4x4.TRS(area.pivot.position, area.pivot.rotation, Vector3.one) :
                 Matrix4x4.TRS(area.pivot.position, Quaternion.identity, Vector3.one);
 
@@ -350,12 +359,12 @@ public class AreaSpawnerUniversal : MonoBehaviour
     void OnValidate()
     {
         if (spawnAreas.Count == 0)
-            Debug.LogWarning("[Spawner] ⚠ No hay SpawnAreas.");
+            Debug.LogWarning("[Spawner] No hay SpawnAreas.");
 
         for (int i = 0; i < prefabs.Count; i++)
         {
             if (prefabs[i].prefab == null)
-                Debug.LogError($"[Spawner] ❌ Prefab NULL en índice {i}");
+                Debug.LogError($"[Spawner] Prefab NULL en índice {i}");
 
             if (prefabs[i].maxCount < prefabs[i].minCount)
                 prefabs[i].maxCount = prefabs[i].minCount;
