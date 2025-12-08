@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MusicaFondo : MonoBehaviour
 {
@@ -18,6 +18,7 @@ public class MusicaFondo : MonoBehaviour
             "musicaMuerte" => manager.musicaMuerte,
             "musicaMenu" => manager.musicaMenu,
             "safeZone" => manager.safeZone,
+            "musicaVictoria" => manager.musicaVictoria,   // ← AÑADIDO
             _ => null
         };
     }
@@ -32,13 +33,13 @@ public class MusicaFondo : MonoBehaviour
     {
         if (lista == null || lista.Length == 0)
         {
-            Debug.LogWarning("[MusicaFondo] Lista vac�a.");
+            Debug.LogWarning("[MusicaFondo] Lista vacía.");
             return;
         }
 
         int indice = Random.Range(0, lista.Length);
 
-        // Evitar repetici�n consecutiva
+        // Evitar repetición consecutiva
         if (lista.Length > 1)
         {
             while (indice == indiceAnterior)
@@ -64,6 +65,9 @@ public class MusicaFondo : MonoBehaviour
     public void ReproducirMusicaMenuAleatoria() => ReproducirAudio(ObtenerLista("musicaMenu"));
     public void ReproducirMusicaSafezoneAleatoria() => ReproducirAudio(ObtenerLista("safeZone"));
 
+    public void ReproducirMusicaVictoriaAleatoria() =>      // ← AÑADIDO
+        ReproducirAudio(ObtenerLista("musicaVictoria"));
+
     public void DetenerTodaLaMusica()
     {
         if (manager == null)
@@ -72,7 +76,13 @@ public class MusicaFondo : MonoBehaviour
             return;
         }
 
-        audio[][] listas = { manager.musica, manager.musicaMuerte, manager.musicaMenu, manager.safeZone };
+        audio[][] listas = {
+            manager.musica,
+            manager.musicaMuerte,
+            manager.musicaMenu,
+            manager.safeZone,
+            manager.musicaVictoria      // ← AÑADIDO
+        };
 
         foreach (var lista in listas)
         {

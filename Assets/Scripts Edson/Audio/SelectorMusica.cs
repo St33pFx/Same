@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SelectorMusica : MonoBehaviour
 {
@@ -7,10 +7,11 @@ public class SelectorMusica : MonoBehaviour
         MusicaJuego,
         MusicaMuerte,
         MusicaMenu,
-        SafeZone
+        SafeZone,
+        MusicaVictoria   // ← AÑADIDO
     }
 
-    [Header("Configuraci�n")]
+    [Header("Configuración")]
     public TipoMusica tipoMusica;
 
     [Tooltip("Reproducir al iniciar la escena")]
@@ -23,21 +24,21 @@ public class SelectorMusica : MonoBehaviour
         musicaFondo = FindAnyObjectByType<MusicaFondo>();
         if (musicaFondo == null)
         {
-            Debug.LogError("[SelectorMusica] No se encontr� el componente MusicaFondo.");
+            Debug.LogError("[SelectorMusica] No se encontró el componente MusicaFondo.");
         }
     }
 
     private void Start()
     {
         musicaFondo.DetenerTodaLaMusica();
-        
+
         if (reproducirAlIniciar && musicaFondo != null)
         {
             ReproducirMusicaSeleccionada();
         }
     }
 
-    [ContextMenu("Reproducir M�sica Seleccionada")]
+    [ContextMenu("Reproducir Música Seleccionada")]
     public void ReproducirMusicaSeleccionada()
     {
         if (musicaFondo == null) return;
@@ -60,8 +61,12 @@ public class SelectorMusica : MonoBehaviour
                 musicaFondo.ReproducirMusicaSafezoneAleatoria();
                 break;
 
+            case TipoMusica.MusicaVictoria:                 // ← AÑADIDO
+                musicaFondo.ReproducirMusicaVictoriaAleatoria();
+                break;
+
             default:
-                Debug.LogWarning("[SelectorMusica] Tipo de m�sica no reconocido.");
+                Debug.LogWarning("[SelectorMusica] Tipo de música no reconocido.");
                 break;
         }
     }

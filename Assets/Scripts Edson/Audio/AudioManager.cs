@@ -1,4 +1,4 @@
-using System.Linq;
+Ôªøusing System.Linq;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -11,11 +11,12 @@ public class AudioManager : MonoBehaviour
     public audio[] musicaMuerte;
     public audio[] musicaMenu;
     public audio[] safeZone;
+    public audio[] musicaVictoria;   // ‚Üê A√ëADIDO
     public audio[] ruidosZombie;
-    public audio[] daÒoZombies;
+    public audio[] da√±oZombies;
     public audio[] muerteZombies;
 
-    [Header("Vol˙menes")]
+    [Header("Vol√∫menes")]
     [Range(0f, 1f)] public float volumenEfectos = 1f;
     [Range(0f, 1f)] public float volumenMusica = 1f;
 
@@ -32,14 +33,15 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        // Inicializar todas las listas autom·ticamente
+        // Inicializar todas las listas autom√°ticamente
         InicializarAudios(sonido, volumenEfectos);
         InicializarAudios(musica, volumenMusica);
         InicializarAudios(musicaMuerte, volumenMusica);
         InicializarAudios(musicaMenu, volumenMusica);
         InicializarAudios(safeZone, volumenMusica);
+        InicializarAudios(musicaVictoria, volumenMusica);   // ‚Üê A√ëADIDO
         InicializarAudios(ruidosZombie, volumenEfectos);
-        InicializarAudios(daÒoZombies, volumenEfectos);
+        InicializarAudios(da√±oZombies, volumenEfectos);
         InicializarAudios(muerteZombies, volumenEfectos);
     }
 
@@ -63,6 +65,7 @@ public class AudioManager : MonoBehaviour
         ActualizarListaVolumen(musicaMuerte, nuevoVolumen);
         ActualizarListaVolumen(musicaMenu, nuevoVolumen);
         ActualizarListaVolumen(safeZone, nuevoVolumen);
+        ActualizarListaVolumen(musicaVictoria, nuevoVolumen);   // ‚Üê A√ëADIDO
     }
 
     public void ActualizarVolumenEfectos(float nuevoVolumen)
@@ -70,7 +73,7 @@ public class AudioManager : MonoBehaviour
         volumenEfectos = nuevoVolumen;
         ActualizarListaVolumen(sonido, nuevoVolumen);
         ActualizarListaVolumen(ruidosZombie, nuevoVolumen);
-        ActualizarListaVolumen(daÒoZombies, nuevoVolumen);
+        ActualizarListaVolumen(da√±oZombies, nuevoVolumen);
         ActualizarListaVolumen(muerteZombies, nuevoVolumen);
     }
 
@@ -92,11 +95,12 @@ public class AudioManager : MonoBehaviour
         if (BuscarYReproducir(musicaMuerte, nombreAudio)) return;
         if (BuscarYReproducir(musicaMenu, nombreAudio)) return;
         if (BuscarYReproducir(safeZone, nombreAudio)) return;
+        if (BuscarYReproducir(musicaVictoria, nombreAudio)) return;   // ‚Üê A√ëADIDO
         if (BuscarYReproducir(ruidosZombie, nombreAudio)) return;
-        if (BuscarYReproducir(daÒoZombies, nombreAudio)) return;
+        if (BuscarYReproducir(da√±oZombies, nombreAudio)) return;
         if (BuscarYReproducir(muerteZombies, nombreAudio)) return;
 
-        Debug.LogWarning($"[AudioManager] No encontrÈ ning˙n audio llamado '{nombreAudio}'");
+        Debug.LogWarning($"[AudioManager] No encontr√© ning√∫n audio llamado '{nombreAudio}'");
     }
 
     public void Stop(string nombreAudio)
@@ -106,18 +110,19 @@ public class AudioManager : MonoBehaviour
         if (BuscarYDetener(musicaMuerte, nombreAudio)) return;
         if (BuscarYDetener(musicaMenu, nombreAudio)) return;
         if (BuscarYDetener(safeZone, nombreAudio)) return;
+        if (BuscarYDetener(musicaVictoria, nombreAudio)) return;   // ‚Üê A√ëADIDO
         if (BuscarYDetener(ruidosZombie, nombreAudio)) return;
-        if (BuscarYDetener(daÒoZombies, nombreAudio)) return;
+        if (BuscarYDetener(da√±oZombies, nombreAudio)) return;
         if (BuscarYDetener(muerteZombies, nombreAudio)) return;
 
-        Debug.LogWarning($"[AudioManager] No encontrÈ ning˙n audio llamado '{nombreAudio}'");
+        Debug.LogWarning($"[AudioManager] No encontr√© ning√∫n audio llamado '{nombreAudio}'");
     }
 
     public void PlayUnaVez(string nombreAudio)
     {
         var todasLasListas = sonido
             .Concat(ruidosZombie)
-            .Concat(daÒoZombies)
+            .Concat(da√±oZombies)
             .Concat(muerteZombies);
 
         foreach (audio s in todasLasListas)
@@ -129,7 +134,7 @@ public class AudioManager : MonoBehaviour
             }
         }
 
-        Debug.LogWarning($"[AudioManager] No se encontrÛ el audio: {nombreAudio}");
+        Debug.LogWarning($"[AudioManager] No se encontr√≥ el audio: {nombreAudio}");
     }
 
     private bool BuscarYReproducir(audio[] lista, string nombre)
@@ -162,5 +167,4 @@ public class AudioManager : MonoBehaviour
         return false;
     }
 }
-
 
