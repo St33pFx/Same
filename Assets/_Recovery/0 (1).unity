@@ -8010,7 +8010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.ProbeVolumePerSceneData
   serializedBakingSet: {fileID: 11400000, guid: 4d1ce06c926484d4597a2504a6449bda, type: 2}
-  sceneGUID: d456c4621b3eb5641a7e52a43b434d6b
+  sceneGUID: 115f9ec73a84af74cb88f5975cc65eb4
   obsoleteAsset: {fileID: 0}
   obsoleteCellSharedDataAsset: {fileID: 0}
   obsoleteCellSupportDataAsset: {fileID: 0}
