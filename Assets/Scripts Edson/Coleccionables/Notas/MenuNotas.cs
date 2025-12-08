@@ -8,7 +8,10 @@ public class MenuNotas : MonoBehaviour
     [Header("Botones de notas")]
     public Button[] botonesNotas;
 
-    [Header("Contenido de notas")]
+    [Header("Títulos de notas (lo que ven los botones)")]
+    public string[] titulosNotas;
+
+    [Header("Contenido de notas (lo que aparece al abrirlas)")]
     public string[] textosNotas;
 
     [Header("UI del contenido")]
@@ -19,27 +22,21 @@ public class MenuNotas : MonoBehaviour
 
     private void OnEnable()
     {
-        // Iniciar la espera para asegurar que NotasManager esté listo
         StartCoroutine(EsperarNotasManager());
     }
 
     private void OnDisable()
     {
-        // Desuscribirse del evento para evitar referencias fantasma
         if (NotasManager.Instance != null)
             NotasManager.Instance.OnNotaDesbloqueada -= ActivarBotonDeNota;
     }
 
     private IEnumerator EsperarNotasManager()
     {
-        // Esperar hasta que exista el singleton
         while (NotasManager.Instance == null)
             yield return null;
 
-        // Suscribirse al evento de notas desbloqueadas
         NotasManager.Instance.OnNotaDesbloqueada += ActivarBotonDeNota;
-
-        // Inicializar los botones con el estado actual
         InicializarBotones();
     }
 
@@ -52,19 +49,20 @@ public class MenuNotas : MonoBehaviour
 
             boton.onClick.RemoveAllListeners();
 
-            // Solo activar interacción si la nota ya está desbloqueada
             bool desbloqueada = NotasManager.Instance.NotaEstaDesbloqueada(i);
             boton.interactable = desbloqueada;
 
             TextMeshProUGUI botonTexto = boton.GetComponentInChildren<TextMeshProUGUI>();
             if (botonTexto != null)
             {
-                botonTexto.text = desbloqueada ? textosNotas[i] : simboloBloqueado;
+                botonTexto.text = desbloqueada
+                    ? titulosNotas[i]
+                    : simboloBloqueado;
             }
 
             if (desbloqueada)
             {
-                int id = i; // Capturar la variable correctamente
+                int id = i;
                 boton.onClick.AddListener(() => MostrarNota(id));
             }
         }
@@ -79,12 +77,10 @@ public class MenuNotas : MonoBehaviour
 
         boton.interactable = true;
 
-        // Cambiar el texto de signo de interrogación al contenido real
         TextMeshProUGUI botonTexto = boton.GetComponentInChildren<TextMeshProUGUI>();
-        if (botonTexto != null && id < textosNotas.Length)
-            botonTexto.text = textosNotas[id];
+        if (botonTexto != null)
+            botonTexto.text = titulosNotas[id];
 
-        // Limpiar listeners anteriores y asignar el click
         boton.onClick.RemoveAllListeners();
         boton.onClick.AddListener(() => MostrarNota(id));
     }
